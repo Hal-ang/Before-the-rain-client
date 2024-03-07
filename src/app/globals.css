@@ -16,6 +16,9 @@
   .desc-r-18 {
     @apply font-regular text-18pxr leading-18pxr;
   }
+  .button-b-18 {
+    @apply font-bold text-18pxr leading-20pxr;
+  }
 }
 
 .fade-title {
