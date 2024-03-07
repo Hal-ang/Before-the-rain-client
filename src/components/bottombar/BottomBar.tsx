@@ -1,10 +1,11 @@
 import React, { ButtonHTMLAttributes, HTMLProps } from "react";
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface BottomBarProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
 }
 
-const Button = ({ text, ...rest }: ButtonProps) => (
+const BottomBar = ({ text, ...rest }: BottomBarProps) => (
   <button
     {...rest}
     className="w-full rounded-10pxr bg-dark-primary text-dark-on-primary text-center button-b-18 py-15pxr"
@@ -13,4 +14,4 @@ const Button = ({ text, ...rest }: ButtonProps) => (
   </button>
 );
 
-export default Button;
+export default BottomBar;

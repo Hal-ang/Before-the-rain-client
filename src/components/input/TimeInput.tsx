@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { RefAttributes, RefObject, useRef } from "react";
 
+import { FocusBind } from "@/hooks/useFocused";
 import Input from "./Input";
 
 const attributes = {
@@ -23,28 +24,42 @@ const attributes = {
 
 const LABEL_CLASSNAME = "text-white font-regular text-18pxr";
 
-const TimeInput = () => {
-  const hourRef = useRef<HTMLInputElement>(null);
-  const minuteRef = useRef<HTMLInputElement>(null);
-
+const TimeInput = ({
+  hourRef,
+  minuteRef,
+  hourBind,
+  minuteBind
+}: {
+  hourBind: FocusBind;
+  minuteBind: FocusBind;
+  hourRef: RefObject<HTMLInputElement>;
+  minuteRef: RefObject<HTMLInputElement>;
+}) => {
   return (
     <div className="flex flex-row items-center gap-x-16pxr">
       <Input
         ref={hourRef}
         {...attributes}
-        max={23}
         onChange={(e) => {
-          if (e.target.value.length === 2) {
+          const value = e.target.value;
+
+          const num = Number(value);
+          if (hourRef.current && num > 23) {
+            hourRef.current.value = "23";
+          }
+
+          if (value.length === 2) {
             hourRef.current?.blur();
 
             if (!minuteRef.current?.value) {
               minuteRef.current?.focus();
             }
-          } else if (hourRef.current && e.target.value.length > 2) {
-            hourRef.current.value = e.target.value.slice(0, 2);
+          } else if (hourRef.current && value.length > 2) {
+            hourRef.current.value = value.slice(0, 2);
             return;
           }
         }}
+        {...hourBind}
       />
       <p className={LABEL_CLASSNAME}>시간</p>
       <Input
@@ -52,6 +67,13 @@ const TimeInput = () => {
         {...attributes}
         max={60}
         onChange={(e) => {
+          const value = e.target.value;
+
+          const num = Number(value);
+          if (minuteRef.current && num > 59) {
+            minuteRef.current.value = "59";
+          }
+
           if (e.target.value.length === 2) {
             minuteRef.current?.blur();
           } else if (minuteRef.current && e.target.value.length > 2) {
@@ -59,6 +81,7 @@ const TimeInput = () => {
             return;
           }
         }}
+        {...minuteBind}
       />
       <p className={LABEL_CLASSNAME}>분 전</p>
     </div>
