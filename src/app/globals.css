@@ -6,8 +6,14 @@
   box-sizing: border-box;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  .heading-b-32 {
+    @apply font-bold text-32pxr leading-50pxr;
+  }
+  .heading-b-25 {
+    @apply font-bold text-25pxr leading-40pxr;
+  }
+  .desc-regular-18 {
+    @apply font-regular text-18pxr leading-18pxr;
   }
 }
