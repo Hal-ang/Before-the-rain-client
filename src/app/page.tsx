@@ -1,6 +1,5 @@
 "use client";
 
-import { FULL_CENTER_CLASSNAME } from "@/const";
 import FadeTitle from "@/components/FadeTitle";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -24,7 +23,7 @@ export default function Home() {
   }, [isFetchedUser, isFirstUser]);
 
   return (
-    <main className={FULL_CENTER_CLASSNAME}>
+    <main className="min-h-screen w-full flex items-center justify-center">
       <FadeTitle text="반가워요!" />
     </main>
   );

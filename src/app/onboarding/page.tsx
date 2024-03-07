@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 
-import { FULL_CENTER_CLASSNAME } from "@/const";
 import FadeTitle from "@/components/FadeTitle";
 import { useInterval } from "@/hooks/useInterval";
 import { useRouter } from "next/navigation";
@@ -20,11 +19,11 @@ const Onboarding = () => {
   useEffect(() => {
     if (currentIndex < STEPS.length) return;
 
-    router.push("/survey/1");
+    router.push("/survey");
   }, [currentIndex]);
 
   return (
-    <main className={FULL_CENTER_CLASSNAME}>
+    <main className="min-h-screen w-full flex items-center justify-center">
       <FadeTitle key={STEPS[currentIndex]} text={STEPS[currentIndex]} />
     </main>
   );
