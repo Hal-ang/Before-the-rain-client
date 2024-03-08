@@ -10,8 +10,8 @@ import React from "react";
 
 const Content = () => {
   return (
-    <main className="min-h-screen w-full flex flex-col">
-      <Header text="비가 오기 전에" />
+    <main className="min-h-screen w-full flex flex-col ">
+      <Header text="비가 오기 전에" enableSticky />
       <section className="grow flex flex-col px-20pxr pt-7pxr">
         <DarkOutlineCard className="flex flex-row items-center py-34pxr px-12pxr gap-x-9pxr">
           <img
