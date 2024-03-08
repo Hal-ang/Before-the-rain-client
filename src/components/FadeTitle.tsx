@@ -1,4 +1,5 @@
 import React from "react";
+import { TRANSITION_DURATIN } from "@/constants/duration";
 
 const FadeTitle = ({
   fontStyle = "heading-b-32",
@@ -14,7 +15,9 @@ const FadeTitle = ({
       className={`${fontStyle} text-white fade-title text-center`}
       style={
         transitionProperty
-          ? { transition: `${transitionProperty} 0.5s ease-out` }
+          ? {
+              transition: `${transitionProperty} ${TRANSITION_DURATIN}ms ease-out`
+            }
           : undefined
       }
     >
