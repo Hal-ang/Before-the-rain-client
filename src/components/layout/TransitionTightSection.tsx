@@ -14,7 +14,7 @@ const TransitionTightSection = ({
     <section className="grow flex flex-col items-center px-20pxr">
       <div
         className={`w-full flex justify-center items-center ${
-          shouldTransition ? "flex-0" : "flex-1"
+          shouldTransition ? "flex-0 mt-12pxr" : "flex-1"
         }`}
         style={{ transition: "flex 0.5s ease-out" }}
       >

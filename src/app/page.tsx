@@ -10,6 +10,7 @@ const isFirstUser = true;
 export default function Home() {
   const router = useRouter();
 
+  // TODO : API 연결 완료 시, 자동 redirect 코드로 변경
   useEffect(() => {
     if (!isFetchedUser || !isFirstUser) return;
 

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 import FadeTitle from "@/components/FadeTitle";
+import { PAGE_TRANSITION_DURATION } from "@/constants/duration";
 import { useInterval } from "@/hooks/useInterval";
 import { useRouter } from "next/navigation";
 
@@ -14,7 +15,7 @@ const Onboarding = () => {
 
   useInterval(() => {
     setCurrentIndex((ci) => ci + 1);
-  }, 1500);
+  }, PAGE_TRANSITION_DURATION);
 
   useEffect(() => {
     if (currentIndex < STEPS.length) return;

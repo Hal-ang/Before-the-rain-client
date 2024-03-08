@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import { RIPPLE_DURATION } from "@/constants/duration";
 import { useDebounce } from "./useDebounce";
 
 const useRipple = <T extends HTMLElement>(ref: React.RefObject<T>) => {
@@ -53,7 +54,7 @@ const useRipple = <T extends HTMLElement>(ref: React.RefObject<T>) => {
           backgroundColor: "#FFFFFF",
           opacity: "25%",
           transform: "scale(0)",
-          animation: "ripple 600ms linear",
+          animation: `ripple ${RIPPLE_DURATION}ms linear`,
           borderRadius: "50%"
         }}
       />

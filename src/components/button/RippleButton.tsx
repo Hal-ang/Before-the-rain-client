@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode, useRef } from "react";
 
+import { RIPPLE_DURATION } from "@/constants/duration";
 import useRipple from "@/hooks/useRipple";
 
 interface RippleProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -9,7 +10,7 @@ interface RippleProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 const RippleButton = ({
   // ripple duration default is 600ms
-  delay = 600,
+  delay = RIPPLE_DURATION,
   onClick,
   children,
   ...props
