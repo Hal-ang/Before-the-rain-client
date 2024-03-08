@@ -7,7 +7,6 @@ import { PAGE_TRANSITION_DURATION } from "@/constants/duration";
 import { useRouter } from "next/navigation";
 
 const isFirstUser = true;
-
 const Done = () => {
   const router = useRouter();
 
@@ -26,7 +25,13 @@ const Done = () => {
     [isFirstUser]
   );
   return (
-    <main className="min-h-screen w-full flex items-center justify-center">
+    <main className="min-h-screen w-full flex items-center justify-center relative">
+      <img
+        className="fixed left-0 -z-10"
+        src={"https://d1j05o5l6xx0ft.cloudfront.net" + "/black-particle.gif"}
+        alt="particle"
+      />
+
       <FadeTitle text={titleText} />
     </main>
   );

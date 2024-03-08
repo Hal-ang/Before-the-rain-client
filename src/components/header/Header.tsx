@@ -14,7 +14,7 @@ const Header = ({
 }: HeaderProps) => {
   return (
     <header
-      className={`w-full px-8pxr py-12pxr ${
+      className={`w-full px-8pxr py-12pxr z-10 ${
         enableSticky ? "sticky top-0" : ""
       } bg-light-on-background`}
     >

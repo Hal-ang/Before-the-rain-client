@@ -3,6 +3,7 @@ import { DarkCard, DarkOutlineCard } from "@/components/layout/card";
 import { EMOJI_PATH } from "@/constants/image";
 import { HOURLY } from "@/constants/mockup";
 import Header from "@/components/header/Header";
+import Image from "next/image";
 import Label from "@/components/Label";
 import Link from "next/link";
 import Question from "@/assets/question.svg";
@@ -10,12 +11,12 @@ import React from "react";
 
 const Content = () => {
   return (
-    <main className="min-h-screen w-full flex flex-col ">
+    <main className="min-h-screen w-full flex flex-col bg-light-on-background">
       <Header text="비가 오기 전에" enableSticky />
       <section className="grow flex flex-col px-20pxr pt-7pxr">
         <DarkOutlineCard className="flex flex-row items-center py-34pxr px-12pxr gap-x-9pxr">
-          <img
-            className="flex"
+          <Image
+            className="flex floating"
             style={{ width: "35%" }}
             src={process.env.NEXT_PUBLIC_CDN_URL + EMOJI_PATH.smile}
             alt="rain-emoji"
@@ -55,7 +56,7 @@ const Content = () => {
                       {weather.rainGage * 100}%
                     </p>
                   </div>
-                  <img
+                  <Image
                     src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                     alt=""
                     width={50}

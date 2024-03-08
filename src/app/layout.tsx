@@ -37,9 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${myFont.className} bg-light-on-background`}>
-        {children}
-      </body>
+      <body className={`${myFont.className} bg-black`}>{children}</body>
     </html>
   );
 }

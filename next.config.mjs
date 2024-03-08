@@ -19,6 +19,9 @@ const nextConfig = {
     );
     fileLoaderRule.exclude = /\.svg$/i;
     return config;
+  },
+  images: {
+    domains: ["d1j05o5l6xx0ft.cloudfront.net", "openweathermap.org"]
   }
 };
 

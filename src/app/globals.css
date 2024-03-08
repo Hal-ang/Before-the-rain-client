@@ -101,3 +101,20 @@ input[type="number"] {
     max-height: -webkit-fill-available;
   }
 }
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-5px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(10px 10px 10px #000);
+}
