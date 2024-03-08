@@ -1,17 +1,22 @@
-import React, { ButtonHTMLAttributes, HTMLProps } from "react";
+import React, { ButtonHTMLAttributes, HTMLProps, useRef } from "react";
+
+import RippleButton from "../button/RippleButton";
 
 export interface BottomBarProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
-  text: string;
+  onClick: () => void;
 }
 
-const BottomBar = ({ text, ...rest }: BottomBarProps) => (
-  <button
-    {...rest}
-    className="w-full rounded-10pxr bg-dark-primary text-dark-on-primary text-center button-b-18 py-15pxr"
-  >
-    {text}
-  </button>
-);
+const BottomBar = ({ children, onClick, ...rest }: BottomBarProps) => {
+  return (
+    <RippleButton
+      {...rest}
+      onClick={onClick}
+      className="w-full rounded-10pxr bg-dark-primary text-dark-on-primary text-center button-b-18 py-15pxr"
+    >
+      {children}
+    </RippleButton>
+  );
+};
 
 export default BottomBar;

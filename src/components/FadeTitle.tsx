@@ -1,19 +1,25 @@
 import React from "react";
 
 const FadeTitle = ({
-  fontClassName = "heading-b-32",
-  text
+  fontStyle = "heading-b-32",
+  text,
+  transitionProperty = "font-size"
 }: {
-  fontClassName?: string;
+  fontStyle?: string;
   text: string;
+  transitionProperty?: string;
 }) => {
   return (
-    <span
-      className={`${fontClassName} text-white fade-title mx-auto`}
-      style={{ transition: "font-size 0.5s ease-out, margin 0.5s ease-out" }}
+    <h3
+      className={`${fontStyle} text-white fade-title text-center`}
+      style={
+        transitionProperty
+          ? { transition: `${transitionProperty} 0.5s ease-out` }
+          : undefined
+      }
     >
       {text}
-    </span>
+    </h3>
   );
 };
 

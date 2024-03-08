@@ -3,27 +3,21 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import BackHeader from "@/components/header/BackHeader";
-import Button from "@/components/bottombar/BottomBar";
 import FadeTitle from "@/components/FadeTitle";
 import FixedBottomBar from "@/components/bottombar/FixedBottomBar";
 import ProgressBar from "@/components/ProgressBar";
 import TimeInput from "@/components/input/TimeInput";
-import TransitionTitle from "@/components/TransitionTitle";
+import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import useFocused from "@/hooks/useFocused";
+import { useInterval } from "@/hooks/useInterval";
 import { useRouter } from "next/navigation";
 
 const AlertBefore = () => {
-  const [percent, setPercent] = useState(0);
   const router = useRouter();
   const hourRef = useRef<HTMLInputElement>(null);
   const minuteRef = useRef<HTMLInputElement>(null);
   const [isDone, setIsDone] = useState(false);
   const [minutes, setMinutes] = useState(0);
-
-  useEffect(() => {
-    if (!isDone) return;
-    setPercent(50);
-  }, [isDone]);
 
   const { isFocused: isHourFocused, bind: hourBind } = useFocused();
   const { isFocused: isMinuteFocused, bind: minuteBind } = useFocused();
@@ -40,34 +34,39 @@ const AlertBefore = () => {
     const minute = Number(minuteRef.current?.value);
     const value = hour * 60 + minute;
     setMinutes(value);
-    if (value > 0) {
-      setIsDone(true);
-    }
+    setIsDone(value > 0);
   }, [isFocused]);
 
   return (
     <main className="min-h-screen w-full flex flex-col">
-      <BackHeader onClickBack={() => router.back()} />
+      <BackHeader />
       <section className="w-full px-12pxr">
-        <ProgressBar percent={percent} />
+        <ProgressBar key={"no"} percent={!isDone ? 0 : 50} />
       </section>
-      <section className={`grow flex flex-col items-center px-20pxr`}>
-        <div
-          className={isFocused ? undefined : "flex-1"}
-          style={{ transition: "flex 0.5s ease-in" }}
-        />
-        <TransitionTitle shouldChange={isFocused} text="미리 알려 드릴게요" />
-        <div className="mt-124pxr w-full flex flex-row items-center justify-center">
+
+      <TransitionTightSection
+        shouldTransition={isFocused}
+        Top={
+          <FadeTitle
+            text="미리 알려 드릴게요"
+            fontStyle={isFocused ? "heading-b-25" : undefined}
+          />
+        }
+        Bottom={
           <TimeInput
             hourRef={hourRef}
             minuteRef={minuteRef}
             hourBind={hourBind}
             minuteBind={minuteBind}
           />
-        </div>
-        <div className=" flex-1" />
-      </section>
-      {isDone && <FixedBottomBar text="다음" />}
+        }
+      />
+
+      {isDone && (
+        <FixedBottomBar onClick={() => router.push("/survey/alert-summary")}>
+          다음
+        </FixedBottomBar>
+      )}
     </main>
   );
 };
