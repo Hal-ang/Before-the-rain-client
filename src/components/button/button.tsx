@@ -1,16 +1,9 @@
 import React, { ButtonHTMLAttributes, useRef } from "react";
+import RippleButton, { RippleButtonProps } from "./RippleButton";
 
-import RippleButton from "./RippleButton";
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick: () => void;
-  className?: string;
-}
-
-const Button = ({ children, onClick, className, ...rest }: ButtonProps) => {
+const Button = ({ children, className, ...rest }: RippleButtonProps) => {
   return (
     <RippleButton
-      onClick={onClick}
       {...rest}
       className={`px-24pxr py-10pxr rounded-100pxr font-medium text-18pxr leading-20pxr ${className}`}
     >
@@ -20,10 +13,10 @@ const Button = ({ children, onClick, className, ...rest }: ButtonProps) => {
 };
 
 function withButton(
-  Component: (props: ButtonProps) => JSX.Element,
+  Component: (props: RippleButtonProps) => JSX.Element,
   className: string
 ) {
-  return function EnhancedComponent(_props: ButtonProps) {
+  return function EnhancedComponent(_props: RippleButtonProps) {
     return <Component {..._props} className={className} />;
   };
 }

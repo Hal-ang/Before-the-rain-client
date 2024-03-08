@@ -14,6 +14,7 @@ const AlertSummary = () => {
   const router = useRouter();
 
   const handleClick = useCallback((isAgree: boolean) => {
+    setIsDone(true);
     // TODO : set alert summary
     router.push("/survey/time-period");
   }, []);

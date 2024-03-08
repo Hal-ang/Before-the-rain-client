@@ -45,11 +45,13 @@ const TimePeriod = () => {
     [selectedPeriods.length]
   );
 
+  const [percent, setPercent] = useState(75);
+
   return (
     <main className="min-h-screen w-full flex flex-col">
       <BackHeader />
       <section className="w-full px-12pxr">
-        <ProgressBar percent={75} />
+        <ProgressBar percent={percent} />
       </section>
       <TransitionTightSection
         shouldTransition={shouldTransition}
@@ -84,7 +86,10 @@ const TimePeriod = () => {
         }
       />
       {isDone && (
-        <FixedBottomBar onClick={() => router.push("/survey/done")}>
+        <FixedBottomBar
+          onClick={() => setPercent(100)}
+          onRippleEndClick={() => router.push("/survey/done")}
+        >
           완료
         </FixedBottomBar>
       )}
