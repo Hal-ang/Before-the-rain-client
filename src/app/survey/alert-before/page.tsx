@@ -9,10 +9,11 @@ import ProgressBar from "@/components/ProgressBar";
 import TimeInput from "@/components/input/TimeInput";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import useFocused from "@/hooks/useFocused";
-import { useInterval } from "@/hooks/useInterval";
 import { useRouter } from "next/navigation";
+import useVisualViewportHeight from "@/hooks/useVisualViewportHeight";
 
 const AlertBefore = () => {
+  const viewportHeight = useVisualViewportHeight();
   const router = useRouter();
   const hourRef = useRef<HTMLInputElement>(null);
   const minuteRef = useRef<HTMLInputElement>(null);
@@ -38,10 +39,10 @@ const AlertBefore = () => {
   }, [isFocused]);
 
   return (
-    <main className="min-h-screen w-full flex flex-col">
+    <main className="w-full flex flex-col min-h-screen">
       <BackHeader />
       <section className="w-full px-12pxr">
-        <ProgressBar key={"no"} percent={!isDone ? 0 : 50} />
+        <ProgressBar percent={!isDone ? 0 : 50} />
       </section>
 
       <TransitionTightSection
@@ -61,9 +62,11 @@ const AlertBefore = () => {
           />
         }
       />
-
+      {viewportHeight}
       {isDone && (
-        <FixedBottomBar onClick={() => router.push("/survey/alert-summary")}>
+        <FixedBottomBar
+          onRippleEndClick={() => router.push("/survey/alert-summary")}
+        >
           다음
         </FixedBottomBar>
       )}

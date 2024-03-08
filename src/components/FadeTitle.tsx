@@ -4,7 +4,7 @@ import { TRANSITION_DURATIN } from "@/constants/duration";
 const FadeTitle = ({
   fontStyle = "heading-b-32",
   text,
-  transitionProperty = "font-size"
+  transitionProperty = "all"
 }: {
   fontStyle?: string;
   text: string;

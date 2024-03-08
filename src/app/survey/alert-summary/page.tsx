@@ -30,8 +30,10 @@ const AlertSummary = () => {
         Top={<FadeTitle text="요약 알림을 받으시겠어요?" />}
         Bottom={
           <div className="flex flex-row items-center gap-x-18pxr">
-            <PrimaryButton onClick={() => handleClick(true)}>네</PrimaryButton>
-            <SecondaryButton onClick={() => handleClick(false)}>
+            <PrimaryButton onRippleEndClick={() => handleClick(true)}>
+              네
+            </PrimaryButton>
+            <SecondaryButton onRippleEndClick={() => handleClick(false)}>
               아니요
             </SecondaryButton>
           </div>
