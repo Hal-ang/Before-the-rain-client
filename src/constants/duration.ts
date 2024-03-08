@@ -1,2 +1,3 @@
 export const PAGE_TRANSITION_DURATION = 1000;
 export const RIPPLE_DURATION = 600;
+export const TRANSITION_DURATIN = 500;
