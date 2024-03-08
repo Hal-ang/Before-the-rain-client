@@ -7,10 +7,9 @@ import { EMOJI_PATH } from "@/constants/image";
 import { HOURLY } from "@/constants/mockup";
 import Header from "@/components/header/Header";
 import Image from "next/image";
-import Knowhow from "./Knowhow";
+import Knowhow from "../../components/content/Knowhow";
 import Label from "@/components/Label";
 import Link from "next/link";
-import Question from "@/assets/question.svg";
 import SummaryCard from "@/components/content/SummaryCard";
 
 const RESPONSE = {
