@@ -1,4 +1,3 @@
-import React, { ButtonHTMLAttributes, useRef } from "react";
 import RippleButton, { RippleButtonProps } from "./RippleButton";
 
 const Button = ({ children, className, ...rest }: RippleButtonProps) => {

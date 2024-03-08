@@ -7,10 +7,10 @@ interface HeaderProps {
 }
 const Header = ({ LeftIcon, text, RightIcon }: HeaderProps) => {
   return (
-    <header className="w-full px-8pxr py-12pxr sticky top-0">
+    <header className="w-full px-8pxr py-12pxr sticky top-0 bg-light-on-background">
       {LeftIcon ? LeftIcon : <></>}
       {text && (
-        <p className="font-medium text-18pxr leading-18pxr text-dark-on-surface">
+        <p className="pl-12pxr font-medium text-18pxr leading-18pxr text-dark-on-surface">
           {text}
         </p>
       )}
