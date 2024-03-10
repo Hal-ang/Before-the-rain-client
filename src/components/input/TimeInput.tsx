@@ -1,7 +1,7 @@
-import React, { RefAttributes, RefObject, useRef } from "react";
+import React, { RefObject } from "react";
 
 import { FocusBind } from "@/hooks/useFocused";
-import Input from "./Input";
+import LargeInput from "./LargeInput";
 
 const attributes = {
   className: "w-96pxr",
@@ -37,7 +37,7 @@ const TimeInput = ({
 }) => {
   return (
     <div className="flex flex-row items-center gap-x-16pxr">
-      <Input
+      <LargeInput
         ref={hourRef}
         {...attributes}
         onChange={(e) => {
@@ -62,7 +62,7 @@ const TimeInput = ({
         {...hourBind}
       />
       <p className={LABEL_CLASSNAME}>시간</p>
-      <Input
+      <LargeInput
         ref={minuteRef}
         {...attributes}
         max={60}

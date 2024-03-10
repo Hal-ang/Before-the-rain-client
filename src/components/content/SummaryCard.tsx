@@ -1,4 +1,4 @@
-import { DarkOutlineCard } from "../layout/card";
+import { CardLayout } from "../layout/card";
 import Image from "next/image";
 import React from "react";
 
@@ -10,7 +10,10 @@ interface SummaryCardProps {
 }
 const SummaryCard = ({ desc, title, rainGage, imageUrl }: SummaryCardProps) => {
   return (
-    <DarkOutlineCard className="flex flex-row items-center py-34pxr px-12pxr gap-x-9pxr">
+    <CardLayout
+      state="dark-outline"
+      className="flex flex-row items-center py-34pxr px-12pxr gap-x-9pxr"
+    >
       <Image
         className="flex floating"
         style={{ width: "35%" }}
@@ -26,7 +29,7 @@ const SummaryCard = ({ desc, title, rainGage, imageUrl }: SummaryCardProps) => {
           강수 확률 {rainGage * 100}%
         </p>
       </div>
-    </DarkOutlineCard>
+    </CardLayout>
   );
 };
 

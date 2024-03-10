@@ -15,11 +15,13 @@ const ProgressBar = ({ percent }: ProgressBarProps) => {
             width: `${percent}%`,
             transition: `width ${duration}ms ease-in-out`
           }}
-          className="bg-dark-primary rounded-24pxr h-full mr-4pxr"
+          className={`bg-dark-primary rounded-24pxr h-full will-change-contents ${
+            percent < 100 && "mr-4pxr"
+          }`}
         />
 
         <div
-          className="grow bg-dark-primary-container rounded-24pxr flex h-full"
+          className="grow bg-dark-primary-container rounded-24pxr flex h-full will-change-contents"
           style={{ transition: `width ${duration}ms ease-in-out` }}
         />
 

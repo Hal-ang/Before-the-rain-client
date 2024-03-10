@@ -12,7 +12,7 @@ const FadeTitle = ({
 }) => {
   return (
     <h3
-      className={`${fontStyle} text-white fade-title text-center`}
+      className={`${fontStyle} text-white fade-title text-center will-change-contents`}
       style={
         transitionProperty
           ? {
