@@ -80,6 +80,7 @@ const Content = () => {
                     alt=""
                     width={50}
                     height={50}
+                    priority={true}
                   />
                   <div className="flex flex-col justify-center gap-y-3pxr">
                     <p className="font-regular text-13pxr leading-17pxr">16°</p>
