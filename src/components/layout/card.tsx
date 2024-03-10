@@ -23,8 +23,20 @@ function withCard(
   };
 }
 
-export const DarkOutlineCard = withCard(
+const DarkOutlineCard = withCard(
   Card,
   "border border-dark-outline-variant bg-dark-surface"
 );
-export const DarkCard = withCard(Card, "bg-dark-surface-container-highest");
+const DarkCard = withCard(Card, "bg-dark-surface-container-highest");
+
+interface CardLayoutProps extends CardProps {
+  state: "dark-outline" | "dark";
+}
+export const CardLayout = ({ state, ...props }: CardLayoutProps) => {
+  if (state === "dark-outline") {
+    return <DarkOutlineCard {...props} />;
+  } else if (state === "dark") {
+    return <DarkCard {...props} />;
+  }
+  return null;
+};

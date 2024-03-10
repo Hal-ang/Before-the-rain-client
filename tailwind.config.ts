@@ -32,7 +32,8 @@ const config: Config = {
         "dark-on-secondary-container": "#E8DEF8",
         "dark-on-surface": "#E6E0E9",
         "dark-surface-container-highest": "#36343B",
-        "dark-surface-container-low": "#1D1B20"
+        "dark-surface-container-low": "#1D1B20",
+        "dark-surface": "#141218"
       },
       spacing: extendedPxr,
       fontSize: extendedPxr,
