@@ -14,7 +14,7 @@ const CheckBox = ({ label, desc, checked, onClick }: CheckBoxProps) => {
   return (
     <RippleButton
       onClick={onClick}
-      className={`py-10pxr px-10pxr rounded-100pxr font-medium border border-dark-outline flex flex-row items-center ${
+      className={`py-10pxr pl-10pxr pr-14pxr rounded-100pxr font-medium border border-dark-outline flex flex-row items-center ${
         checked ? "bg-dark-on-secondary" : ""
       }`}
     >
