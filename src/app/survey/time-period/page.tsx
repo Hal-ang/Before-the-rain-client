@@ -10,8 +10,9 @@ import FixedBottomBar from "@/components/bottombar/FixedBottomBar";
 import { PAGE_TRANSITION_DURATION } from "@/constants/duration";
 import ProgressBar from "@/components/ProgressBar";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
+import useNextPath from "@/hooks/survey/useNextPath";
 import { useRouter } from "next/navigation";
-import useSurveyProgressPercent from "@/hooks/useSurveyProgressPercent";
+import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
 const TimePeriod = () => {
   const router = useRouter();
@@ -47,6 +48,7 @@ const TimePeriod = () => {
   );
 
   const percent = useSurveyProgressPercent(isDispatchable);
+  const { goToNextPage } = useNextPath();
 
   return (
     <main className="min-h-screen w-full flex flex-col">
@@ -87,9 +89,7 @@ const TimePeriod = () => {
         }
       />
       {isDispatchable && (
-        <FixedBottomBar onRippleEndClick={() => router.push("/survey/done")}>
-          완료
-        </FixedBottomBar>
+        <FixedBottomBar onRippleEndClick={goToNextPage}>완료</FixedBottomBar>
       )}
     </main>
   );

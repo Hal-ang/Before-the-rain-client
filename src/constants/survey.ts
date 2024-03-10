@@ -17,3 +17,5 @@ export const TIME_PERIODS: {
   { label: "저녁", value: "evening", range: [18, 19, 20] },
   { label: "밤", value: "night", range: [21, 22, 23] }
 ];
+
+export const SURVEY_STEPS = ["alert-before", "alert-summary", "time-period"];

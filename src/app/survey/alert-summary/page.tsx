@@ -7,18 +7,23 @@ import BackHeader from "@/components/header/BackHeader";
 import FadeTitle from "@/components/FadeTitle";
 import ProgressBar from "@/components/ProgressBar";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
-import { useRouter } from "next/navigation";
-import useSurveyProgressPercent from "@/hooks/useSurveyProgressPercent";
+import useNextPath from "@/hooks/survey/useNextPath";
+import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
 const AlertSummary = () => {
   const [isDone, setIsDone] = useState(false);
-  const router = useRouter();
+  const { goToNextPage } = useNextPath();
 
-  const handleClick = useCallback((isAgree: boolean) => {
-    setIsDone(true);
-    // TODO : set alert summary
-    router.push("/survey/time-period");
-  }, []);
+  const handleClick = useCallback(
+    (isAgree: boolean) => {
+      setIsDone(true);
+      // TODO : set alert summary
+      setTimeout(() => {
+        goToNextPage();
+      }, 500);
+    },
+    [goToNextPage]
+  );
 
   const percent = useSurveyProgressPercent(isDone);
 
@@ -33,10 +38,8 @@ const AlertSummary = () => {
         Top={<FadeTitle text="요약 알림을 받으시겠어요?" />}
         Bottom={
           <div className="flex flex-row items-center gap-x-18pxr">
-            <PrimaryButton onRippleEndClick={() => handleClick(true)}>
-              네
-            </PrimaryButton>
-            <SecondaryButton onRippleEndClick={() => handleClick(false)}>
+            <PrimaryButton onClick={() => handleClick(true)}>네</PrimaryButton>
+            <SecondaryButton onClick={() => handleClick(false)}>
               아니요
             </SecondaryButton>
           </div>

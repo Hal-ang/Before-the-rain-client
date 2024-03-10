@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
 
 import BackHeader from "@/components/header/BackHeader";
 import FadeTitle from "@/components/FadeTitle";
@@ -10,7 +9,8 @@ import ProgressBar from "@/components/ProgressBar";
 import TimeInput from "@/components/input/TimeInput";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import useFocused from "@/hooks/useFocused";
-import useSurveyProgressPercent from "@/hooks/useSurveyProgressPercent";
+import { useRouter } from "next/navigation";
+import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 import useVisualViewportHeight from "@/hooks/useVisualViewportHeight";
 
 const AlertBefore = () => {
@@ -20,7 +20,6 @@ const AlertBefore = () => {
   const minuteRef = useRef<HTMLInputElement>(null);
   const [isDone, setIsDone] = useState(false);
   const [minutes, setMinutes] = useState(0);
-  const pathname = usePathname();
 
   const { isFocused: isHourFocused, bind: hourBind } = useFocused();
   const { isFocused: isMinuteFocused, bind: minuteBind } = useFocused();

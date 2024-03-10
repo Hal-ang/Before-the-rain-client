@@ -1,8 +1,7 @@
 import React, { useMemo } from "react";
 
+import { SURVEY_STEPS } from "@/constants/survey";
 import { usePathname } from "next/navigation";
-
-const SURVEY_STEPS = ["alert-before", "alert-summary", "time-period"];
 
 export const getSurveyProgressPercent = (path: string) => {
   const index = SURVEY_STEPS.findIndex((step) => path.includes(step));
