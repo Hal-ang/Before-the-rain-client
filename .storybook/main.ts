@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/nextjs";
+import path from "path";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -41,6 +42,34 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag"
+  },
+  webpackFinal: async (config: any) => {
+    // Add path aliases
+    config.resolve.alias["@"] = path.resolve(__dirname, "../src");
+    config.resolve.alias["@/pages"] = path.resolve(__dirname, "../src/pages");
+    config.resolve.alias["@/components"] = path.resolve(
+      __dirname,
+      "../src/components"
+    );
+
+    config.module.rules = [
+      ...config.module.rules.map((rule) => {
+        if (!rule || rule === "...") {
+          return rule;
+        }
+
+        if (rule.test && /svg/.test(String(rule.test))) {
+          return { ...rule, exclude: /\.svg$/i };
+        }
+        return rule;
+      }),
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"]
+      }
+    ];
+
+    return config;
   }
 };
 export default config;

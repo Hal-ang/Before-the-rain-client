@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, ReactNode, useState } from "react";
+import React, { ButtonHTMLAttributes } from "react";
 
 import ActiveRadio from "@/assets/active_radio.svg";
 import InactiveRadio from "@/assets/inactive_radio.svg";
