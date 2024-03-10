@@ -8,6 +8,7 @@ import FadeTitle from "@/components/FadeTitle";
 import ProgressBar from "@/components/ProgressBar";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import { useRouter } from "next/navigation";
+import useSurveyProgressPercent from "@/hooks/useSurveyProgressPercent";
 
 const AlertSummary = () => {
   const [isDone, setIsDone] = useState(false);
@@ -19,11 +20,13 @@ const AlertSummary = () => {
     router.push("/survey/time-period");
   }, []);
 
+  const percent = useSurveyProgressPercent(isDone);
+
   return (
     <main className="min-h-screen w-full flex flex-col">
       <BackHeader />
       <section className="w-full px-12pxr">
-        <ProgressBar percent={!isDone ? 50 : 75} />
+        <ProgressBar percent={percent} />
       </section>
       <TransitionTightSection
         shouldTransition={false}

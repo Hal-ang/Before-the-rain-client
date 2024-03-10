@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 import BackHeader from "@/components/header/BackHeader";
 import FadeTitle from "@/components/FadeTitle";
@@ -9,7 +10,7 @@ import ProgressBar from "@/components/ProgressBar";
 import TimeInput from "@/components/input/TimeInput";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import useFocused from "@/hooks/useFocused";
-import { useRouter } from "next/navigation";
+import useSurveyProgressPercent from "@/hooks/useSurveyProgressPercent";
 import useVisualViewportHeight from "@/hooks/useVisualViewportHeight";
 
 const AlertBefore = () => {
@@ -19,6 +20,7 @@ const AlertBefore = () => {
   const minuteRef = useRef<HTMLInputElement>(null);
   const [isDone, setIsDone] = useState(false);
   const [minutes, setMinutes] = useState(0);
+  const pathname = usePathname();
 
   const { isFocused: isHourFocused, bind: hourBind } = useFocused();
   const { isFocused: isMinuteFocused, bind: minuteBind } = useFocused();
@@ -38,11 +40,13 @@ const AlertBefore = () => {
     setIsDone(value > 0);
   }, [isFocused]);
 
+  const percent = useSurveyProgressPercent(isDone);
+
   return (
     <main className="w-full flex flex-col min-h-screen">
       <BackHeader />
       <section className="w-full px-12pxr">
-        <ProgressBar percent={!isDone ? 0 : 50} />
+        <ProgressBar percent={percent} />
       </section>
 
       <TransitionTightSection

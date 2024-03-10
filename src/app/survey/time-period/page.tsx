@@ -11,6 +11,7 @@ import { PAGE_TRANSITION_DURATION } from "@/constants/duration";
 import ProgressBar from "@/components/ProgressBar";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import { useRouter } from "next/navigation";
+import useSurveyProgressPercent from "@/hooks/useSurveyProgressPercent";
 
 const TimePeriod = () => {
   const router = useRouter();
@@ -40,12 +41,12 @@ const TimePeriod = () => {
     };
   }, [shouldTransition]);
 
-  const isDone = useMemo(
+  const isDispatchable = useMemo(
     () => selectedPeriods.length > 0,
     [selectedPeriods.length]
   );
 
-  const [percent, setPercent] = useState(75);
+  const percent = useSurveyProgressPercent(isDispatchable);
 
   return (
     <main className="min-h-screen w-full flex flex-col">
@@ -85,11 +86,8 @@ const TimePeriod = () => {
           ) : null
         }
       />
-      {isDone && (
-        <FixedBottomBar
-          onClick={() => setPercent(100)}
-          onRippleEndClick={() => router.push("/survey/done")}
-        >
+      {isDispatchable && (
+        <FixedBottomBar onRippleEndClick={() => router.push("/survey/done")}>
           완료
         </FixedBottomBar>
       )}

@@ -14,7 +14,7 @@ import SummaryCard from "@/components/content/SummaryCard";
 
 const RESPONSE = {
   dt: 1684929490,
-  rainGage: [0, 0.34, 0.4] // 오늘 강수 확률,
+  rainGage: [0] // 오늘 강수 확률,
 };
 
 const SUMMARY_DATA = {
