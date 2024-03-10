@@ -1,7 +1,6 @@
 import CheckBox from "@/components/button/CheckBox";
 
 import { Meta, StoryObj } from "@storybook/react";
-import StoryLayout from "./StoryLayout";
 import { useArgs } from "@storybook/preview-api";
 
 const Render = (args: typeof CheckBox.arguments) => {
@@ -22,16 +21,6 @@ const meta = {
     layout: "centered"
   },
   tags: ["autodocs"],
-  argTypes: {
-    onClick: () => {}
-  },
-  decorators: [
-    (Story) => (
-      <StoryLayout>
-        <Story />
-      </StoryLayout>
-    )
-  ],
   render: Render
 } satisfies Meta<typeof CheckBox>;
 
