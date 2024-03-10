@@ -48,7 +48,7 @@ const Content = () => {
   }, [maxRainGage]);
 
   return (
-    <main className="min-h-screen w-full flex flex-col bg-light-on-background">
+    <main className="min-h-screen w-full flex flex-col ">
       <Header text="비가 오기 전에" enableSticky />
       <section className="grow flex flex-col px-20pxr pt-7pxr">
         <SummaryCard rainGage={maxRainGage} {...summary} />

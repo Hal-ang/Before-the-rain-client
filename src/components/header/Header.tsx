@@ -5,18 +5,20 @@ interface HeaderProps {
   text?: string;
   RightIcon?: ReactNode;
   enableSticky?: boolean;
+  bgColor?: string;
 }
 const Header = ({
   LeftIcon,
   text,
   RightIcon,
-  enableSticky = false
+  enableSticky = false,
+  bgColor = "bg-black"
 }: HeaderProps) => {
   return (
     <header
       className={`w-full min-h-64pxr px-8pxr flex flex-row items-center z-10 ${
         enableSticky ? "sticky top-0" : ""
-      } bg-light-on-background`}
+      } ${bgColor}`}
     >
       {LeftIcon ? LeftIcon : <></>}
       {text && (
