@@ -1,27 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import StoryLayout from "./StoryLayout";
 import ProgressBar from "@/components/ProgressBar";
-import { useArgs } from "@storybook/preview-api";
-import { useState } from "react";
-
-const ProgressBarWrapper = (args: unknown) => {
-  const [{ percent }, updateArgs] = useArgs();
-  const [_percent] = useState(percent);
-
-  return (
-    <>
-      <ProgressBar percent={percent} />;
-      <button
-        onClick={() => {
-          updateArgs({ percent: percent === 0 ? _percent : 0 });
-        }}
-        className="bg-dark-primary"
-      >
-        start transition
-      </button>
-    </>
-  );
-};
 
 const meta = {
   title: "Progressbar",
@@ -37,8 +16,7 @@ const meta = {
         <Story />
       </StoryLayout>
     )
-  ],
-  render: ProgressBarWrapper
+  ]
 } satisfies Meta<typeof ProgressBar>;
 
 export default meta;

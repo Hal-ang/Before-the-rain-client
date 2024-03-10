@@ -2,7 +2,19 @@ import CheckBox from "@/components/button/CheckBox";
 
 import { Meta, StoryObj } from "@storybook/react";
 import StoryLayout from "./StoryLayout";
+import { useArgs } from "@storybook/preview-api";
 
+const Render = (args: typeof CheckBox.arguments) => {
+  const [{ checked }, updateArgs] = useArgs();
+
+  return (
+    <CheckBox
+      {...args}
+      onClick={() => updateArgs({ checked: !checked })}
+      checked={checked}
+    />
+  );
+};
 const meta = {
   title: "CheckBox",
   component: CheckBox,
@@ -19,7 +31,8 @@ const meta = {
         <Story />
       </StoryLayout>
     )
-  ]
+  ],
+  render: Render
 } satisfies Meta<typeof CheckBox>;
 
 export default meta;
