@@ -58,15 +58,17 @@ const Webview = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    window.webkit.messageHandlers.nativeApp.postMessage(
-      "updateLocationPermissionEnabled"
-    );
-    window.webkit.messageHandlers.nativeApp.postMessage(
-      "updateNotificationPermissionEnabled"
-    );
-    window.webkit.messageHandlers.nativeApp.postMessage(
-      "startUpdatingLocation"
-    );
+    if (window?.webkit?.messageHandlers) {
+      window.webkit.messageHandlers.nativeApp.postMessage(
+        "updateLocationPermissionEnabled"
+      );
+      window.webkit.messageHandlers.nativeApp.postMessage(
+        "updateNotificationPermissionEnabled"
+      );
+      window.webkit.messageHandlers.nativeApp.postMessage(
+        "startUpdatingLocation"
+      );
+    }
   }, []);
 
   return (

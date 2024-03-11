@@ -12,7 +12,7 @@ declare global {
     updateNotificationPermissionEnabled: (enabled: "true" | "false") => void;
     updateLocation: (latitude: number, longitude: number) => void;
     webkit: {
-      messageHandlers: {
+      messageHandlers?: {
         nativeApp: {
           postMessage: (
             message: Coordinates | LocationPermission | NotificationPermission

@@ -16,7 +16,7 @@ const Permission = () => {
       {
         label: "위치 정보 제공 동의",
         onClick: () => {
-          window.webkit.messageHandlers.nativeApp.postMessage(
+          window?.webkit?.messageHandlers?.nativeApp.postMessage(
             "requestLocationPermission"
           );
         },
@@ -25,7 +25,7 @@ const Permission = () => {
       {
         label: "푸시 알림 수신 동의",
         onClick: () => {
-          window.webkit.messageHandlers.nativeApp.postMessage(
+          window?.webkit?.messageHandlers?.nativeApp.postMessage(
             "requestNotificationPermission"
           );
         },
