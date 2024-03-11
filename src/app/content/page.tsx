@@ -3,12 +3,16 @@
 import { CardLayout } from "@/components/layout/card";
 import { HOURLY } from "@/constants/mockup";
 import Header from "@/components/header/Header";
+import HourWeatherSection from "@/components/content/HourWeatherSection";
 import Image from "next/image";
 import Knowhow from "../../components/content/Knowhow";
 import Label from "@/components/Label";
 import Link from "next/link";
 import React from "react";
 import SummaryCard from "@/components/content/SummaryCard";
+import WeatherClothesCard from "@/components/content/WeatherClothesCard";
+import dayjs from "dayjs";
+import { getKoreanHour } from "@/utils/date";
 import useSummaryQuery from "@/hooks/quries/useSummaryQuery";
 
 const Content = () => {
@@ -31,41 +35,7 @@ const Content = () => {
         </CardLayout>
         <div className="mt-21pxr">
           <p className="font-medium text-15pxr">👕🩳</p>
-          <CardLayout
-            state="dark-outline"
-            className="mt-13pxr px-20pxr pt-14pxzr"
-          >
-            {HOURLY.map((weather) => {
-              return (
-                <section
-                  key={weather.dt}
-                  className="text-white flex flex-row items-center last:border-none border-b border-light-secondary mb-3pxr pt-6pxr pb-10pxr px-15pxr gap-x-10pxr"
-                >
-                  <div className="flex flex-col items-center">
-                    <p className="font-medium text-10pxr ">6시</p>
-                    <p className="mt-2pxr font-regular text-9pxr text-light-secondary">
-                      {weather.rainGage * 100}%
-                    </p>
-                  </div>
-                  <Image
-                    src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-                    alt=""
-                    width={50}
-                    height={50}
-                    priority={true}
-                  />
-                  <div className="flex flex-col justify-center gap-y-3pxr">
-                    <p className="font-regular text-13pxr leading-17pxr">16°</p>
-                    <div className="flex flex-row flex-wrap items-center justify-start gap-x-6pxr">
-                      {weather.clothes.map((cloth) => (
-                        <Label key={cloth.id} text={cloth.label} />
-                      ))}
-                    </div>
-                  </div>
-                </section>
-              );
-            })}
-          </CardLayout>
+          <WeatherClothesCard weathers={HOURLY.hourly.slice(0, 28)} />
         </div>
         <div className="mt-22pxr">
           <Link
