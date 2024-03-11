@@ -7,8 +7,7 @@ const meta = {
   parameters: {
     layout: "centered"
   },
-  tags: ["autodocs"],
-  decorators: [(Story) => <Story />]
+  tags: ["autodocs"]
 } satisfies Meta<typeof LargeButton>;
 
 export default meta;
