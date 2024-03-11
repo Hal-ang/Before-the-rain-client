@@ -11,7 +11,8 @@
     "dev:mock": "concurrently --kill-others \"NEXT_PUBLIC_API_MOCKING=enabled next dev\" \"npx tsx watch ./src/mocks/http.ts\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "bundle": "ANALYZE=true npm run build"
+    "bundle": "ANALYZE=true npm run build",
+    "chromatic": "npx chromatic --project-token=chpt_1266a64599ea49b"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.1.3",
@@ -40,6 +41,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "chromatic": "^11.0.8",
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "eslint": "^8",
