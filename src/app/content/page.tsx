@@ -1,57 +1,23 @@
 "use client";
 
-import React, { useMemo } from "react";
-
 import { CardLayout } from "@/components/layout/card";
-import { EMOJI_PATH } from "@/constants/image";
 import { HOURLY } from "@/constants/mockup";
 import Header from "@/components/header/Header";
 import Image from "next/image";
 import Knowhow from "../../components/content/Knowhow";
 import Label from "@/components/Label";
 import Link from "next/link";
+import React from "react";
 import SummaryCard from "@/components/content/SummaryCard";
-
-const RESPONSE = {
-  dt: 1684929490,
-  rainGage: [0] // 오늘 강수 확률,
-};
-
-const SUMMARY_DATA = {
-  smile: {
-    desc: "오늘은 조금",
-    title: "안심해도 되겠어요!",
-    imageUrl: process.env.NEXT_PUBLIC_CDN_URL + EMOJI_PATH.smile
-  },
-  worry: {
-    desc: "운에 맡기시려고요?",
-    title: "혹시 몰라요...",
-    imageUrl: process.env.NEXT_PUBLIC_CDN_URL + EMOJI_PATH.worry
-  },
-  umbrella: {
-    desc: "비가 올 확률이 높아요",
-    title: "우산을 챙기세요!",
-    imageUrl: process.env.NEXT_PUBLIC_CDN_URL + EMOJI_PATH.umbrella
-  }
-};
+import useSummaryQuery from "@/hooks/quries/useSummaryQuery";
 
 const Content = () => {
-  const maxRainGage = useMemo(
-    () => Math.max(...RESPONSE.rainGage),
-    RESPONSE.rainGage
-  );
-
-  const summary = useMemo(() => {
-    if (maxRainGage === 0) return SUMMARY_DATA.smile;
-    if (maxRainGage < 0.4) return SUMMARY_DATA.worry;
-    return SUMMARY_DATA.umbrella;
-  }, [maxRainGage]);
-
+  const { summaryProps } = useSummaryQuery();
   return (
     <main className="min-h-screen w-full flex flex-col ">
       <Header text="비가 오기 전에" enableSticky />
       <section className="grow flex flex-col px-20pxr pt-7pxr">
-        <SummaryCard rainGage={maxRainGage} {...summary} />
+        <SummaryCard {...summaryProps} />
 
         <Knowhow text="강수확률은 과거에 비슷한 날씨가 100번 있었다면 확률만큼 비가 왔다는 뜻이에요" />
         <CardLayout
