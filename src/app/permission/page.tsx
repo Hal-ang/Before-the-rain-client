@@ -1,32 +1,47 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 
 import BackHeader from "@/components/header/BackHeader";
 import { CardLayout } from "@/components/layout/card";
 import Knowhow from "@/components/content/Knowhow";
 import Switch from "@/components/Switch";
+import { useWebviewContext } from "@/components/Webview";
 
 const Permission = () => {
-  const [agreedPermissions, setAgreedPermissions] = useState<string[]>([]);
+  const { enabledLocationPermission, enabledNotificationPermission } =
+    useWebviewContext();
+  const permissions = useMemo(() => {
+    return [
+      {
+        label: "위치 정보 제공 동의",
+        onClick: () => {
+          window.webkit.messageHandlers.nativeApp.postMessage(
+            "requestLocationPermission"
+          );
+        },
+        isAgreed: enabledLocationPermission
+      },
+      {
+        label: "푸시 알림 수신 동의",
+        onClick: () => {
+          window.webkit.messageHandlers.nativeApp.postMessage(
+            "requestNotificationPermission"
+          );
+        },
+        isAgreed: enabledNotificationPermission
+      }
+    ];
+  }, [enabledNotificationPermission, enabledLocationPermission]);
 
-  const permissions = [
-    { label: "위치 정보 제공 동의", onClick: () => {}, value: "location" },
-    {
-      label: "푸시 알림 수신 동의",
-      onClick: () => {},
-      value: "push-notification"
-    }
-  ];
   return (
     <main className="min-h-screen w-full flex flex-col ">
       <BackHeader text="권한 설정" />
-
       <section className="grow flex flex-col px-20pxr pt-7pxr">
         <CardLayout state="dark-outline" className="py-6pxr px-20pxr">
-          {permissions.map((permission, index) => (
+          {permissions.map((permission) => (
             <div
-              key={permission.value}
+              key={permission.label}
               className="flex flex-row items-center justify-between py-12pxr  border-b border-light-secondary last:border-none"
             >
               <p className="font-regular text-13pxr text-white leading-17pxr">
@@ -34,15 +49,8 @@ const Permission = () => {
               </p>
               {/* TODO : API로 교체 */}
               <Switch
-                onClick={() =>
-                  setAgreedPermissions((prev) => {
-                    if (prev.includes(permission.value)) {
-                      return prev.filter((p) => p !== permission.value);
-                    }
-                    return [...prev, permission.value];
-                  })
-                }
-                checked={agreedPermissions.includes(permission.value)}
+                onClick={permission.onClick}
+                checked={permission.isAgreed}
               />
             </div>
           ))}

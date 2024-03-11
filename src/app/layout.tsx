@@ -2,6 +2,7 @@ import "./globals.css";
 
 import MSW from "@/components/\bmsw";
 import type { Metadata } from "next";
+import Webview from "@/components/Webview";
 import localFont from "next/font/local";
 
 export const metadata: Metadata = {
@@ -39,7 +40,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${myFont.className} bg-black`}>
-        <MSW>{children}</MSW>
+        <MSW>
+          <Webview>{children}</Webview>
+        </MSW>
       </body>
     </html>
   );

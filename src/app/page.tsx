@@ -15,7 +15,8 @@ export default function Home() {
     if (!isFetchedUser || !isFirstUser) return;
 
     const timeoutID = setTimeout(() => {
-      router.push("/onboarding");
+      // router.push("/onboarding");
+      router.push("/permission");
     }, 1500);
 
     return () => {
