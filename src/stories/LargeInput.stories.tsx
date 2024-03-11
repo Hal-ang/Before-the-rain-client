@@ -4,7 +4,7 @@ import { LinearButton } from "@/components/button/LinearButton";
 import LargeInput from "@/components/input/LargeInput";
 
 const meta = {
-  title: "LargeInput",
+  title: "Common/LargeInput",
   // @ts-ignore
   component: LargeInput,
   parameters: {

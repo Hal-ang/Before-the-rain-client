@@ -1,11 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
-
-import { LinearButton } from "@/components/button/LinearButton";
 import { CardLayout } from "@/components/layout/card";
 
 const meta = {
   title: "Layout/Card",
-  // @ts-ignore
   component: CardLayout,
   parameters: {
     layout: "centered"

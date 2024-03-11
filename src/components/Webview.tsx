@@ -9,15 +9,12 @@ import React, {
 } from "react";
 
 type BooleanString = "true" | "false";
-const WebviewContext = createContext<
-  | {
-      coordinate: { latitude: number; longitude: number };
-      enabledLocationPermission: boolean;
-      enabledNotificationPermission: boolean;
-    }
-  | undefined
->({
-  coordinate: { latitude: 0, longitude: 0 },
+const WebviewContext = createContext<{
+  coordinate: { latitude: number; longitude: number };
+  enabledLocationPermission: boolean;
+  enabledNotificationPermission: boolean;
+}>({
+  coordinate: { latitude: 37.5, longitude: 127.0 },
   enabledLocationPermission: false,
   enabledNotificationPermission: false
 });
@@ -38,7 +35,7 @@ const Webview = ({ children }: { children: ReactNode }) => {
   const [coordinate, setCoordinate] = useState<{
     latitude: number;
     longitude: number;
-  }>({ latitude: 0, longitude: 0 });
+  }>({ latitude: 37.5, longitude: 127.0 });
 
   useEffect(() => {
     window.updateLocationPermissionEnabled = (enabled: BooleanString) => {
