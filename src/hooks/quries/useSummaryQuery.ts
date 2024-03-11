@@ -5,7 +5,7 @@ import { getSummary } from "@/api.ts";
 import { useQuery } from "@tanstack/react-query";
 import { useWebviewContext } from "@/components/Webview";
 
-const SUMMARY_TYPE = {
+export const SUMMARY_TYPE = {
   smile: {
     desc: "오늘은 조금",
     title: "안심해도 되겠어요!",
