@@ -3,16 +3,11 @@
 import { CardLayout } from "@/components/layout/card";
 import { HOURLY } from "@/constants/mockup";
 import Header from "@/components/header/Header";
-import HourWeatherSection from "@/components/content/HourWeatherSection";
-import Image from "next/image";
 import Knowhow from "../../components/content/Knowhow";
-import Label from "@/components/Label";
 import Link from "next/link";
 import React from "react";
 import SummaryCard from "@/components/content/SummaryCard";
 import WeatherClothesCard from "@/components/content/WeatherClothesCard";
-import dayjs from "dayjs";
-import { getKoreanHour } from "@/utils/date";
 import useSummaryQuery from "@/hooks/quries/useSummaryQuery";
 
 const Content = () => {
