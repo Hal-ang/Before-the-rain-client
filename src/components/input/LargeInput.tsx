@@ -14,5 +14,6 @@ const LargeInput = forwardRef(
     />
   )
 );
+LargeInput.displayName = "LargeInput";
 
 export default LargeInput;
