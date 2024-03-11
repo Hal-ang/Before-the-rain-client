@@ -11,17 +11,17 @@ export const HOURLY = {
   hourly: [
     {
       dt: 1710180000,
-      temp: 2.73,
-      feels_like: 2.73,
-      pressure: 1015,
-      humidity: 81,
-      dew_point: -0.17,
+      temp: 28.76,
+      feels_like: 32.74,
+      pressure: 1016,
+      humidity: 73,
+      dew_point: 23.44,
       uvi: 0,
-      clouds: 88,
+      clouds: 87,
       visibility: 10000,
-      wind_speed: 0.7,
-      wind_deg: 307,
-      wind_gust: 0.9,
+      wind_speed: 4.92,
+      wind_deg: 28,
+      wind_gust: 5.01,
       weather: [
         {
           id: 804,
@@ -30,7 +30,7 @@ export const HOURLY = {
           icon: "04n"
         }
       ],
-      pop: 0
+      pop: 0.06
     },
     {
       dt: 1710183600,
@@ -53,7 +53,7 @@ export const HOURLY = {
           icon: "04n"
         }
       ],
-      pop: 0
+      pop: 0.5
     },
     {
       dt: 1710187200,
