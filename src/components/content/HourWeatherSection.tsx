@@ -19,7 +19,7 @@ const HourWeatherSection = ({
 }: HourWeatherSectionProps) => {
   return (
     <section className="text-white flex flex-row items-center last:border-none border-b border-light-secondary mb-3pxr pt-6pxr pb-10pxr px-15pxr gap-x-10pxr">
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center w-30pxr">
         <p className="font-medium text-10pxr ">{hour}시</p>
         <p className="mt-2pxr font-regular text-9pxr text-light-secondary">
           {rainGage * 100}%
