@@ -3,7 +3,7 @@ import SummaryCard from "@/components/content/SummaryCard";
 import { SUMMARY_TYPE } from "@/hooks/quries/useSummaryQuery";
 
 const meta = {
-  title: "SummaryCard",
+  title: "Compound/SummaryCard",
   component: SummaryCard,
   parameters: {
     layout: "centered"

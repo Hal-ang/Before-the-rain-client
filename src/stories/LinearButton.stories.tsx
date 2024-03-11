@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { LinearButton } from "@/components/button/LinearButton";
 
 const meta = {
-  title: "LinearButton",
+  title: "Common/LinearButton",
   component: LinearButton,
   parameters: {
     layout: "centered"

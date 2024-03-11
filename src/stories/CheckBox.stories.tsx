@@ -15,7 +15,7 @@ const Render = (args: typeof CheckBox.arguments) => {
   );
 };
 const meta = {
-  title: "CheckBox",
+  title: "Common/CheckBox",
   component: CheckBox,
   parameters: {
     layout: "centered"

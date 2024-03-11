@@ -3,7 +3,7 @@ import StoryLayout from "./StoryLayout";
 import ProgressBar from "@/components/ProgressBar";
 
 const meta = {
-  title: "Progressbar",
+  title: "Common/Progressbar",
   component: ProgressBar,
   parameters: {
     layout: "centered"

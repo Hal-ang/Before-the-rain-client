@@ -4,7 +4,7 @@ import ActiveRadio from "@/assets/active_radio.svg";
 import InactiveRadio from "@/assets/inactive_radio.svg";
 import RippleButton from "./RippleButton";
 
-interface CheckBoxProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface CheckBoxProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
   checked: boolean;
   label: string;

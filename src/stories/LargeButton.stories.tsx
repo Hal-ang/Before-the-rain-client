@@ -1,12 +1,8 @@
-import CheckBox from "@/components/button/CheckBox";
-
 import { Meta, StoryObj } from "@storybook/react";
-import StoryLayout from "./StoryLayout";
-import { useArgs } from "@storybook/preview-api";
 import LargeButton from "@/components/button/LargeButton";
 
 const meta = {
-  title: "LargeButton",
+  title: "Common/LargeButton",
   component: LargeButton,
   parameters: {
     layout: "centered"
