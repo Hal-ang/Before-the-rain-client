@@ -38,7 +38,7 @@ export const Checked: Story = {
 
 export const Unchecked: Story = {
   args: {
-    checked: true,
+    checked: false,
     label: "낮",
     desc: "테스트테스트테스트테스트테스트테스트"
   }
@@ -53,7 +53,7 @@ export const CheckedWithoutDesc: Story = {
 
 export const UncheckedWithoutDesc: Story = {
   args: {
-    checked: true,
+    checked: false,
     label: "낮"
   }
 };
