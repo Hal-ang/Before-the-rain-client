@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import WeatherClothesCard from "@/components/content/WeatherClothesCard";
+import WeatherClothesCard from "@/components/content/HourlyWeathers";
 import { HOURLY } from "@/constants/mockup";
 
 const meta = {

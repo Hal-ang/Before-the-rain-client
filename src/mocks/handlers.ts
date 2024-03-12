@@ -1,6 +1,8 @@
 import { CDN_URL, EMOJI_PATH } from "@/constants/image";
 import { HttpResponse, http } from "msw";
 
+import { HOURLY } from "@/constants/mockup";
+
 const allPosts = new Map();
 
 export const handlers = [
@@ -65,6 +67,20 @@ export const handlers = [
       cityName: "서울특별시 은평구"
     };
     return HttpResponse.json(response);
+  }),
+  http.get("/weathers/hourly", async ({ request }) => {
+    console.log("call /weathers/hourly");
+    const url = new URL(request.url);
+
+    const lat = url.searchParams.get("lat");
+    const lon = url.searchParams.get("lon");
+    const offset = url.searchParams.get("offset");
+
+    if (!lat || !lon) {
+      return new HttpResponse(null, { status: 400 });
+    }
+
+    return HttpResponse.json(HOURLY);
   }),
   http.post("/posts", async ({ request }) => {
     // Read the intercepted request body as JSON.

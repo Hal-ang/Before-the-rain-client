@@ -3,11 +3,11 @@ import React, { Suspense } from "react";
 import { CardLayout } from "@/components/layout/card";
 import { HOURLY } from "@/constants/mockup";
 import Header from "@/components/header/Header";
+import HourlyWeathers from "@/components/content/HourlyWeathers";
 import Knowhow from "../../components/content/Knowhow";
 import Link from "next/link";
 import TodayBanner from "@/components/content/TodayBanner";
 import TodaySummary from "@/components/content/TodaySummary";
-import WeatherClothesCard from "@/components/content/WeatherClothesCard";
 
 const Content = () => {
   return (
@@ -24,7 +24,7 @@ const Content = () => {
         <TodaySummary />
         <div className="mt-21pxr">
           <p className="font-medium text-15pxr">👕🩳</p>
-          <WeatherClothesCard weathers={HOURLY.hourly.slice(0, 28)} />
+          <HourlyWeathers />
         </div>
         <div className="mt-22pxr">
           <Link
