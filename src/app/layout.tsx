@@ -2,7 +2,7 @@ import "./globals.css";
 
 import MSW from "@/components/\bmsw";
 import type { Metadata } from "next";
-import Providers from "./providers";
+import Providers from "../components/providers";
 import Webview from "@/components/Webview";
 import localFont from "next/font/local";
 
