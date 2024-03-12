@@ -1,3 +1,5 @@
+"use client";
+
 import { CLOTHES, HOURLY } from "@/constants/mockup";
 
 import { CardLayout } from "../layout/card";
@@ -11,7 +13,7 @@ const WeatherClothesCard = ({
   weathers: typeof HOURLY.hourly;
 }) => {
   return (
-    <CardLayout state="dark-outline" className="mt-13pxr px-20pxr pt-14pxzr">
+    <CardLayout state="dark-outline" className="mt-13pxr px-20pxr pt-14pxr">
       {weathers.map((weather, index) => {
         return (
           <HourWeatherSection

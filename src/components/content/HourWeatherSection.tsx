@@ -35,7 +35,7 @@ const HourWeatherSection = ({
       <div className="flex flex-col justify-center gap-y-3pxr">
         <p className="font-regular text-13pxr leading-17pxr">{temp}°</p>
         <div className="flex flex-row flex-wrap items-center justify-start gap-x-6pxr">
-          {clothes.map((cloth) => (
+          {(clothes ?? []).map((cloth) => (
             <Label key={cloth.id} text={cloth.label} />
           ))}
         </div>
