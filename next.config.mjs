@@ -21,6 +21,10 @@ const nextConfig = {
         use: ["@svgr/webpack"]
       }
     );
+    config.module.rules.push({
+      test: /\.lottie$/,
+      type: "asset/resource"
+    });
     fileLoaderRule.exclude = /\.svg$/i;
     return config;
   },
