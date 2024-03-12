@@ -3,6 +3,7 @@
 import React, {
   ReactNode,
   createContext,
+  startTransition,
   useContext,
   useEffect,
   useState
@@ -50,7 +51,9 @@ const Webview = ({ children }: { children: ReactNode }) => {
     // 위치 정보 업데이트 함수
     window.updateLocation = (latitude: number, longitude: number) => {
       console.log(`Location updated: ${latitude}, ${longitude}`);
-      setCoordinate({ latitude, longitude });
+      startTransition(() => {
+        setCoordinate({ latitude, longitude });
+      });
     };
   }, []);
 

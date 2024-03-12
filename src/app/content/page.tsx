@@ -1,33 +1,27 @@
-"use client";
+import React, { Suspense } from "react";
 
 import { CardLayout } from "@/components/layout/card";
 import { HOURLY } from "@/constants/mockup";
 import Header from "@/components/header/Header";
 import Knowhow from "../../components/content/Knowhow";
 import Link from "next/link";
-import React from "react";
-import SummaryCard from "@/components/content/SummaryCard";
+import TodayBanner from "@/components/content/TodayBanner";
+import TodaySummary from "@/components/content/TodaySummary";
 import WeatherClothesCard from "@/components/content/WeatherClothesCard";
-import useSummaryQuery from "@/hooks/quries/useSummaryQuery";
 
 const Content = () => {
-  const { summaryProps } = useSummaryQuery();
   return (
     <main className="min-h-screen w-full flex flex-col ">
       <Header text="비가 오기 전에" enableSticky />
       <section className="grow flex flex-col px-20pxr pt-7pxr">
-        <SummaryCard {...summaryProps} />
-
-        <Knowhow text="강수확률은 과거에 비슷한 날씨가 100번 있었다면 확률만큼 비가 왔다는 뜻이에요" />
-        <CardLayout
-          state="dark"
-          className="mt-21pxr flex flex-col items-center justify-center text-white py-18pxr"
+        <Suspense
+          // TODO : suspense UI 만들기
+          fallback={<CardLayout state="dark-outline">loading</CardLayout>}
         >
-          <p className="font-regular text-12pxr ">서울특별시 은평구</p>
-          <p className="mt-5pxr font-regular text-40pxr"> 3°</p>
-          <p className="font-regular text-11pxr">흐림</p>
-          <p className="mt-2pxr font-regular text-11pxr">최고 3° 최저 3°</p>
-        </CardLayout>
+          <TodayBanner />
+        </Suspense>
+        <Knowhow text="강수확률은 과거에 비슷한 날씨가 100번 있었다면 확률만큼 비가 왔다는 뜻이에요" />
+        <TodaySummary />
         <div className="mt-21pxr">
           <p className="font-medium text-15pxr">👕🩳</p>
           <WeatherClothesCard weathers={HOURLY.hourly.slice(0, 28)} />

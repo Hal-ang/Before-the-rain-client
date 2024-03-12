@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
-import SummaryCard from "@/components/content/SummaryCard";
-import { SUMMARY_TYPE } from "@/hooks/quries/useSummaryQuery";
+
+import { SUMMARY_TYPE } from "@/hooks/quries/useTodayWeatherBannerQuery";
+import TodayBannerLayout from "@/components/content/TodayBannerLayout";
 
 const meta = {
-  title: "Compound/SummaryCard",
-  component: SummaryCard,
+  title: "Compound/TodayBannerLayout",
+  component: TodayBannerLayout,
   parameters: {
     layout: "centered"
   },
@@ -16,7 +17,7 @@ const meta = {
       </div>
     )
   ]
-} satisfies Meta<typeof SummaryCard>;
+} satisfies Meta<typeof TodayBannerLayout>;
 
 export default meta;
 

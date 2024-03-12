@@ -1,3 +1,4 @@
+import { CDN_URL, EMOJI_PATH } from "@/constants/image";
 import { HttpResponse, http } from "msw";
 
 const allPosts = new Map();
@@ -10,8 +11,8 @@ export const handlers = [
       return new HttpResponse(null, { status: 401 });
     }
   }),
-  http.get("/weathers/summary", async ({ request }) => {
-    console.log("/weathers/summary");
+  http.get("/weathers/today/banner", async ({ request }) => {
+    console.log("call /weathers/today/banner");
     const url = new URL(request.url);
 
     const lat = url.searchParams.get("lat");
@@ -20,13 +21,51 @@ export const handlers = [
     if (!lat || !lon) {
       return new HttpResponse(null, { status: 400 });
     }
-
-    return HttpResponse.json({
-      dt: 1684929490,
-      rainGage: [0, 0.34, 0.4] // 오늘 강수 확률,
-    });
+    const response =
+      (Math.random() * 100) % 2 === 0
+        ? {
+            desc: "운에 맡기시려고요?",
+            title: "혹시 몰라요...",
+            imageUrl: CDN_URL + EMOJI_PATH.worry
+          }
+        : (Math.random() * 100) % 2 === 0
+        ? {
+            desc: "운에 맡기시려고요?",
+            title: "혹시 몰라요...",
+            imageUrl: CDN_URL + EMOJI_PATH.worry
+          }
+        : {
+            desc: "비가 올 확률이 높아요",
+            title: "우산을 챙기세요!",
+            imageUrl: CDN_URL + EMOJI_PATH.umbrella
+          };
+    return HttpResponse.json({ ...response, rainGage: 0.3 });
   }),
+  http.get("/weathers/today/summary", async ({ request }) => {
+    console.log("call /weathers/today/summary");
+    const url = new URL(request.url);
 
+    const lat = url.searchParams.get("lat");
+    const lon = url.searchParams.get("lon");
+
+    if (!lat || !lon) {
+      return new HttpResponse(null, { status: 400 });
+    }
+    const response = {
+      dt: 1684929490,
+      temp: 3,
+      weather: {
+        id: 803,
+        main: "Clouds",
+        description: "broken clouds",
+        icon: "04d"
+      },
+      min: 2,
+      max: 14,
+      cityName: "서울특별시 은평구"
+    };
+    return HttpResponse.json(response);
+  }),
   http.post("/posts", async ({ request }) => {
     // Read the intercepted request body as JSON.
     const newPost = await request.json();
