@@ -42,9 +42,13 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`${myFont.className} bg-black`}>
         <Providers>
-          <MSW>
+          {process.env.NEXT_PUBLIC_API_MOCKING === "enabled" ? (
+            <MSW>
+              <Webview>{children}</Webview>
+            </MSW>
+          ) : (
             <Webview>{children}</Webview>
-          </MSW>
+          )}
         </Providers>
       </body>
     </html>
