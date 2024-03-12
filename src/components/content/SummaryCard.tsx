@@ -21,6 +21,7 @@ const SummaryCard = ({ desc, title, rainGage, imageUrl }: SummaryCardProps) => {
         alt="rain-emoji"
         width={131}
         height={104}
+        priority={true}
       />
       <div className="text-white flex flex-col grow">
         <p className="font-medium text-15pxr">{desc}</p>

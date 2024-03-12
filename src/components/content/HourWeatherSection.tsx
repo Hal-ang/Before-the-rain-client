@@ -26,6 +26,7 @@ const HourWeatherSection = ({
         </p>
       </div>
       <Image
+        className="floating"
         src={`https://openweathermap.org/img/wn/${iconName}@2x.png`}
         alt=""
         width={50}
