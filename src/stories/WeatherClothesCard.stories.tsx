@@ -12,7 +12,14 @@ const meta = {
   tags: ["autodocs"],
   args: {
     weathers: HOURLY.hourly.slice(0, 24)
-  }
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: 350, height: "100%" }}>
+        <Story />
+      </div>
+    )
+  ]
 } satisfies Meta<typeof WeatherClothesCard>;
 
 export default meta;
