@@ -2,10 +2,12 @@
 
 import React, { useEffect, useMemo } from "react";
 
+import { DotLottiePlayer } from "@dotlottie/react-player";
 import FadeTitle from "@/components/FadeTitle";
 import { PAGE_TRANSITION_DURATION } from "@/constants/duration";
 import { useRouter } from "next/navigation";
 
+const particleData = require("/public/particle.lottie");
 const isFirstUser = true;
 const Done = () => {
   const router = useRouter();
@@ -26,10 +28,11 @@ const Done = () => {
   );
   return (
     <main className="min-h-screen w-full flex items-center justify-center relative">
-      <img
-        className="fixed left-0 -z-10"
-        src={"https://d1j05o5l6xx0ft.cloudfront.net" + "/black-particle.gif"}
-        alt="particle"
+      <DotLottiePlayer
+        src={particleData}
+        autoplay
+        className="fixed left-1/2"
+        style={{ transform: "translate(-50%, 0)" }}
       />
 
       <FadeTitle text={titleText} />
