@@ -1,3 +1,5 @@
+"use client";
+
 import { getHourlyWeathers } from "@/api";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useWebviewContext } from "@/components/Webview";

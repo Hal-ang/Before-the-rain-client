@@ -1,7 +1,9 @@
+"use client";
+
 import { CDN_URL, EMOJI_PATH } from "@/constants/image";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 
 import { getTodayWeahterBanner } from "@/api";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useWebviewContext } from "@/components/Webview";
 
 export const SUMMARY_TYPE = {
