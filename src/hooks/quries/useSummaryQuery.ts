@@ -1,6 +1,6 @@
 import { CDN_URL, EMOJI_PATH } from "@/constants/image";
 
-import { getSummary } from "@/api.ts";
+import { getSummary } from "@/api";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useWebviewContext } from "@/components/Webview";
