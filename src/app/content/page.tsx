@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 
 import { CardLayout } from "@/components/layout/card";
-import { HOURLY } from "@/constants/mockup";
 import Header from "@/components/header/Header";
 import HourlyWeathers from "@/components/content/HourlyWeathers";
 import Knowhow from "../../components/content/Knowhow";

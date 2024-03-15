@@ -29,3 +29,7 @@ export default function Home() {
     </main>
   );
 }
+
+// 진입, 
+// fcm 토큰을 가져온다 (웹뷰)
+// 
