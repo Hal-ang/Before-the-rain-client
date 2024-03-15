@@ -7,23 +7,20 @@ import FadeTitle from "@/components/FadeTitle";
 import { LinearButton } from "@/components/button/LinearButton";
 import ProgressBar from "@/components/ProgressBar";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
-import useNextPath from "@/hooks/survey/useNextPath";
+import useNextSurvey from "@/hooks/survey/useNextSurvey";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
 const AlertSummary = () => {
   const [isDone, setIsDone] = useState(false);
-  const { goToNextPage } = useNextPath();
 
-  const handleClick = useCallback(
-    (isAgree: boolean) => {
-      setIsDone(true);
-      // TODO : set alert summary
-      setTimeout(() => {
-        goToNextPage();
-      }, 500);
-    },
-    [goToNextPage]
-  );
+  const { goToNextPage } = useNextSurvey();
+
+  const handleClick = useCallback((isAgree: boolean) => {
+    // setIsDone(true);
+    // setTimeout(() => {
+    //   goToNextPage();
+    // }, 500);
+  }, []);
 
   const percent = useSurveyProgressPercent(isDone);
 
@@ -41,7 +38,7 @@ const AlertSummary = () => {
             <LinearButton state="primary" onClick={() => handleClick(true)}>
               네
             </LinearButton>
-            <LinearButton state="secondary" onClick={() => handleClick(false)}>
+            <LinearButton state="secondary" onRippleEndClick={goToNextPage}>
               아니요
             </LinearButton>
           </div>
