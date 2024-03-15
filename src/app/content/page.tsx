@@ -33,7 +33,7 @@ const Content = () => {
             알람 설정
           </Link>
         </div>
-        <div className="mt-10pxr">
+        <div className="mt-10pxr pb-40pxr">
           <Link
             href="/permission"
             className="text-light-secondary text-15pxr font-regular"

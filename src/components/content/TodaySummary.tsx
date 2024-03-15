@@ -11,9 +11,9 @@ const TodaySummary = () => {
 
   return (
     <TodaySummaryLayout
-      temp={data.temp}
+      temp={Math.floor(data.temp)}
       cityName={data.cityName}
-      weather={data.weather.main}
+      weather={data.weather.description}
       min={data.min}
       max={data.max}
     />

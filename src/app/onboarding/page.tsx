@@ -20,7 +20,8 @@ const Onboarding = () => {
   useEffect(() => {
     if (currentIndex < STEPS.length) return;
 
-    router.push("/survey");
+    const surveyStartPage = "alert-before";
+    router.push(`/survey/${surveyStartPage}`);
   }, [currentIndex]);
 
   return (

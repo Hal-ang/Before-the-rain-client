@@ -1,27 +1,26 @@
 "use client";
 
-import FadeTitle from "@/components/FadeTitle";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const isFetchedUser = true;
-const isFirstUser = true;
+import FadeTitle from "@/components/FadeTitle";
+import { StorageKey } from "@/constants/storage";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
+  const [isFirstUser, setIsFirstUser] = useState(
+    () => localStorage.getItem(StorageKey.UserId) === null
+  );
 
-  // TODO : API 연결 완료 시, 자동 redirect 코드로 변경
   useEffect(() => {
-    if (!isFetchedUser || !isFirstUser) return;
-
     const timeoutID = setTimeout(() => {
-      router.push("/onboarding");
+      router.push(isFirstUser ? "/onboarding" : "/content");
     }, 1500);
 
     return () => {
       clearTimeout(timeoutID);
     };
-  }, [isFetchedUser, isFirstUser]);
+  }, [isFirstUser]);
 
   return (
     <main className="min-h-screen w-full flex items-center justify-center">
@@ -29,7 +28,3 @@ export default function Home() {
     </main>
   );
 }
-
-// 진입, 
-// fcm 토큰을 가져온다 (웹뷰)
-// 
