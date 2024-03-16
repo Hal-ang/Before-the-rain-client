@@ -1,26 +1,27 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import WeatherClothesCard from "@/components/content/WeatherClothesCard";
 import { HOURLY } from "@/constants/mockup";
 
+import HourlyWeatherContainer from "./HourlyWeatherContainer";
+
 const meta = {
-  title: "Compound/WeatherClothesCard",
-  component: WeatherClothesCard,
+  title: "Compound/HourlyWeatherContainer",
+  component: HourlyWeatherContainer,
   parameters: {
     layout: "centered"
   },
   tags: ["autodocs"],
   args: {
-    weathers: HOURLY.hourly.slice(0, 24)
+    data: HOURLY
   },
   decorators: [
     (Story) => (
-      <div style={{ width: 350, height: "100%" }}>
+      <div style={{ width: 400, height: "100%" }}>
         <Story />
       </div>
     )
   ]
-} satisfies Meta<typeof WeatherClothesCard>;
+} satisfies Meta<typeof HourlyWeatherContainer>;
 
 export default meta;
 

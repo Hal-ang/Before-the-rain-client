@@ -1,6 +1,13 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
+import { useAtom, useSetAtom } from "jotai";
 
 import BackHeader from "@/components/header/BackHeader";
 import FadeTitle from "@/components/FadeTitle";
@@ -8,7 +15,9 @@ import FixedBottomBar from "@/components/bottombar/FixedBottomBar";
 import ProgressBar from "@/components/ProgressBar";
 import TimeInput from "@/components/input/TimeInput";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
+import { surveyAtom } from "@/atom/survey";
 import useFocused from "@/hooks/useFocused";
+import useNextSurvey from "@/hooks/survey/useNextSurvey";
 import { useRouter } from "next/navigation";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 import useVisualViewportHeight from "@/hooks/useVisualViewportHeight";
@@ -19,7 +28,8 @@ const AlertBefore = () => {
   const hourRef = useRef<HTMLInputElement>(null);
   const minuteRef = useRef<HTMLInputElement>(null);
   const [isDone, setIsDone] = useState(false);
-  const [minutes, setMinutes] = useState(0);
+
+  const setSurvey = useSetAtom(surveyAtom);
 
   const { isFocused: isHourFocused, bind: hourBind } = useFocused();
   const { isFocused: isMinuteFocused, bind: minuteBind } = useFocused();
@@ -35,11 +45,20 @@ const AlertBefore = () => {
     const hour = Number(hourRef.current?.value);
     const minute = Number(minuteRef.current?.value);
     const value = hour * 60 + minute;
-    setMinutes(value);
     setIsDone(value > 0);
   }, [isFocused]);
 
   const percent = useSurveyProgressPercent(isDone);
+  const { goToNextPage } = useNextSurvey();
+
+  const onClickNext = () => {
+    const hour = Number(hourRef.current?.value);
+    const minute = Number(minuteRef.current?.value);
+    const value = hour * 60 + minute;
+    setSurvey({ alertBeforeRain: value });
+
+    goToNextPage();
+  };
 
   return (
     <main className="w-full flex flex-col min-h-screen">
@@ -50,12 +69,7 @@ const AlertBefore = () => {
 
       <TransitionTightSection
         shouldTransition={isFocused}
-        Top={
-          <FadeTitle
-            text="미리 알려 드릴게요"
-            fontStyle={isFocused ? "heading-b-25" : undefined}
-          />
-        }
+        Top={<FadeTitle text="미리 알려 드릴게요" />}
         Bottom={
           <TimeInput
             hourRef={hourRef}
@@ -65,13 +79,8 @@ const AlertBefore = () => {
           />
         }
       />
-      {viewportHeight}
       {isDone && (
-        <FixedBottomBar
-          onRippleEndClick={() => router.push("/survey/alert-summary")}
-        >
-          다음
-        </FixedBottomBar>
+        <FixedBottomBar onRippleEndClick={onClickNext}>다음</FixedBottomBar>
       )}
     </main>
   );

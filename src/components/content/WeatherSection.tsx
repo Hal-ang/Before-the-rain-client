@@ -1,22 +1,22 @@
-import { Clothes } from "@/constants/mockup";
+import { Clothes } from "@/api/type";
 import Image from "next/image";
 import Label from "../Label";
 import React from "react";
 
-interface HourWeatherSectionProps {
+interface WeatherSectionProps {
   rainGage: number;
   iconName: string;
   clothes: Clothes[];
   hour: string;
   temp: number;
 }
-const HourWeatherSection = ({
+const WeatherSection = ({
   rainGage,
   iconName,
   clothes,
   hour,
   temp
-}: HourWeatherSectionProps) => {
+}: WeatherSectionProps) => {
   return (
     <section className="text-white flex flex-row items-center last:border-none border-b border-light-secondary mb-3pxr pt-6pxr pb-10pxr px-15pxr gap-x-10pxr">
       <div className="flex-none flex flex-col items-center w-30pxr">
@@ -36,8 +36,8 @@ const HourWeatherSection = ({
       <div className="flex flex-col justify-center gap-y-3pxr">
         <p className="font-regular text-13pxr leading-17pxr">{temp}°</p>
         <div className="mt-3pxr flex flex-row flex-wrap items-center justify-start gap-x-6pxr gap-y-4pxr">
-          {(clothes ?? []).map((cloth) => (
-            <Label key={cloth.id} text={cloth.label} />
+          {(clothes ?? []).map(({ id, name }) => (
+            <Label key={id} text={name} />
           ))}
         </div>
       </div>
@@ -45,4 +45,4 @@ const HourWeatherSection = ({
   );
 };
 
-export default HourWeatherSection;
+export default WeatherSection;

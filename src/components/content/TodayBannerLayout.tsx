@@ -2,13 +2,18 @@ import { CardLayout } from "../layout/card";
 import Image from "next/image";
 import React from "react";
 
-interface SummaryCardProps {
+interface TodayBannerLayoutProps {
   desc: string;
   title: string;
   rainGage: number;
   imageUrl: string;
 }
-const SummaryCard = ({ desc, title, rainGage, imageUrl }: SummaryCardProps) => {
+const TodayBannerLayout = ({
+  desc,
+  title,
+  rainGage,
+  imageUrl
+}: TodayBannerLayoutProps) => {
   return (
     <CardLayout
       state="dark-outline"
@@ -34,4 +39,4 @@ const SummaryCard = ({ desc, title, rainGage, imageUrl }: SummaryCardProps) => {
   );
 };
 
-export default SummaryCard;
+export default TodayBannerLayout;

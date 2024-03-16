@@ -1,6 +1,5 @@
 "use client";
 
-import { PeriodValueType, TIME_PERIODS } from "@/constants/survey";
 import React, { useEffect, useMemo, useState } from "react";
 
 import BackHeader from "@/components/header/BackHeader";
@@ -8,9 +7,11 @@ import CheckBox from "@/components/button/CheckBox";
 import FadeTitle from "@/components/FadeTitle";
 import FixedBottomBar from "@/components/bottombar/FixedBottomBar";
 import { PAGE_TRANSITION_DURATION } from "@/constants/duration";
+import { PeriodValueType } from "@/types/survey";
 import ProgressBar from "@/components/ProgressBar";
+import { TIME_PERIODS } from "@/constants/survey";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
-import useNextPath from "@/hooks/survey/useNextPath";
+import useNextPath from "@/hooks/survey/useNextSurvey";
 import { useRouter } from "next/navigation";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 

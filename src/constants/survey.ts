@@ -1,10 +1,4 @@
-export type PeriodLabelType = "새벽" | "아침" | "낮" | "저녁" | "밤";
-export type PeriodValueType =
-  | "dawn"
-  | "morning"
-  | "afternoon"
-  | "evening"
-  | "night";
+import { PeriodLabelType, PeriodValueType } from "@/types/survey";
 
 export const TIME_PERIODS: {
   label: PeriodLabelType;

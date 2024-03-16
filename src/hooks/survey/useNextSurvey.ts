@@ -3,15 +3,14 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { SURVEY_STEPS } from "@/constants/survey";
 
-const useNextPath = () => {
+const useNextSurvey = () => {
   const pathname = usePathname();
   const router = useRouter();
 
   const nextPath = useMemo(() => {
     const index = SURVEY_STEPS.findIndex((step) => pathname.includes(step));
 
-    // reset path
-    if (index < 0) return "/survey";
+    if (index < 0) return "/";
     return index === SURVEY_STEPS.length - 1
       ? "/survey/done"
       : SURVEY_STEPS[index + 1];
@@ -24,4 +23,4 @@ const useNextPath = () => {
   return { goToNextPage };
 };
 
-export default useNextPath;
+export default useNextSurvey;

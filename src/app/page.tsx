@@ -1,27 +1,31 @@
 "use client";
 
-import FadeTitle from "@/components/FadeTitle";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useMemo } from "react";
 
-const isFetchedUser = true;
-const isFirstUser = true;
+import FadeTitle from "@/components/FadeTitle";
+import { StorageKey } from "@/constants/storage";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
 
-  // TODO : API 연결 완료 시, 자동 redirect 코드로 변경
+  const isFirstUser = useMemo(() => {
+    if (typeof window === "undefined") return;
+    return localStorage.getItem(StorageKey.UserId) === null;
+  }, []);
+
   useEffect(() => {
-    if (!isFetchedUser || !isFirstUser) return;
+    if (isFirstUser === undefined) return;
 
     const timeoutID = setTimeout(() => {
-      router.push("/onboarding");
+      // router.push(isFirstUser ? "/onboarding" : "/content");
+      router.push("/content");
     }, 1500);
 
     return () => {
       clearTimeout(timeoutID);
     };
-  }, [isFetchedUser, isFirstUser]);
+  }, [isFirstUser]);
 
   return (
     <main className="min-h-screen w-full flex items-center justify-center">
