@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 import FadeTitle from "@/components/FadeTitle";
 import { StorageKey } from "@/constants/storage";
@@ -8,13 +8,18 @@ import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
-  const [isFirstUser, setIsFirstUser] = useState(
-    () => localStorage.getItem(StorageKey.UserId) === null
-  );
+
+  const isFirstUser = useMemo(() => {
+    if (typeof window === "undefined") return;
+    return localStorage.getItem(StorageKey.UserId) === null;
+  }, []);
 
   useEffect(() => {
+    if (isFirstUser === undefined) return;
+
     const timeoutID = setTimeout(() => {
-      router.push(isFirstUser ? "/onboarding" : "/content");
+      // router.push(isFirstUser ? "/onboarding" : "/content");
+      router.push("/content");
     }, 1500);
 
     return () => {
