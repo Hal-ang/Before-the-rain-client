@@ -16,10 +16,9 @@ import { useRouter } from "next/navigation";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
 const TimePeriod = () => {
-  const router = useRouter();
   const [shouldTransition, setShouldTransition] = useState(false);
   const [selectedPeriods, setSelectedPeriods] = useState<PeriodValueType[]>([]);
-  const [visibleButton, setVisibleButton] = useState(false);
+  const [visibleOptions, setVisibleOptions] = useState(false);
 
   useEffect(() => {
     const timeoutID = setTimeout(() => {
@@ -35,7 +34,7 @@ const TimePeriod = () => {
     if (!shouldTransition) return;
 
     const timeoutID = setTimeout(() => {
-      setVisibleButton(true);
+      setVisibleOptions(true);
     }, 500);
 
     return () => {
@@ -43,12 +42,12 @@ const TimePeriod = () => {
     };
   }, [shouldTransition]);
 
-  const isDispatchable = useMemo(
+  const isDone = useMemo(
     () => selectedPeriods.length > 0,
     [selectedPeriods.length]
   );
 
-  const percent = useSurveyProgressPercent(isDispatchable);
+  const percent = useSurveyProgressPercent(isDone);
   const { goToNextPage } = useNextPath();
 
   return (
@@ -61,7 +60,7 @@ const TimePeriod = () => {
         shouldTransition={shouldTransition}
         Top={<FadeTitle text="맞춰서 알려 드릴게요" />}
         Bottom={
-          visibleButton ? (
+          visibleOptions ? (
             <div className="w-full flex flex-col gap-y-18pxr mt-50pxr">
               {TIME_PERIODS.map(({ label, value, range }) => {
                 const startTime = range[0];
@@ -89,7 +88,7 @@ const TimePeriod = () => {
           ) : null
         }
       />
-      {isDispatchable && (
+      {isDone && (
         <FixedBottomBar onRippleEndClick={goToNextPage}>완료</FixedBottomBar>
       )}
     </main>

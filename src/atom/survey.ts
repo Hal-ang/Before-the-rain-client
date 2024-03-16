@@ -4,7 +4,7 @@ import { atom } from "jotai";
 const _surveyAtom = atom<Survey>({
   alertBeforeRain: 0,
   timePeriods: [],
-  summaryAlertTime: ""
+  summaryAlertTime: 0
 });
 
 export const surveyAtom = atom(

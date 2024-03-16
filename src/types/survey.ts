@@ -9,5 +9,5 @@ export type PeriodValueType =
 export interface Survey {
   alertBeforeRain: number;
   timePeriods: PeriodValueType[];
-  summaryAlertTime: string;
+  summaryAlertTime: number;
 }
