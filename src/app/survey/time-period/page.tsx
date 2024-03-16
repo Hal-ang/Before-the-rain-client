@@ -12,7 +12,6 @@ import ProgressBar from "@/components/ProgressBar";
 import { TIME_PERIODS } from "@/constants/survey";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import useNextPath from "@/hooks/survey/useNextSurvey";
-import { useRouter } from "next/navigation";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
 const TimePeriod = () => {

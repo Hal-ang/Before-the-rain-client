@@ -17,6 +17,7 @@ import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import { surveyAtom } from "@/atom/survey";
 import { useAtom } from "jotai";
 import useFocused from "@/hooks/useFocused";
+import useNextSurvey from "@/hooks/survey/useNextSurvey";
 import { useRouter } from "next/navigation";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
@@ -55,10 +56,11 @@ const AlertBefore = () => {
     setShouldTransition(isFocused);
   }, [isFocused]);
 
+  const { goToNextPage } = useNextSurvey();
   const onClickNext = useCallback(() => {
     setSurvey({ alertBeforeRain: time });
-    router.push("/survey/alert-summary/agreed");
-  }, [time]);
+    goToNextPage();
+  }, [time, goToNextPage]);
 
   const percent = useSurveyProgressPercent(isDone);
 

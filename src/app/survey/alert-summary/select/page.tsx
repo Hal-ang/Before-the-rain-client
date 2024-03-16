@@ -17,7 +17,7 @@ import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import { surveyAtom } from "@/atom/survey";
 import { useAtom } from "jotai";
 import useFocused from "@/hooks/useFocused";
-import { useRouter } from "next/navigation";
+import useNextSurvey from "@/hooks/survey/useNextSurvey";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
 const AlertSummarySelect = () => {
@@ -32,6 +32,7 @@ const AlertSummarySelect = () => {
 
   useEffect(() => {
     if (summaryAlertTime) return;
+
     const timeoutID = setTimeout(() => {
       setShouldTransition(true);
     }, 500);
@@ -44,13 +45,12 @@ const AlertSummarySelect = () => {
     setShouldTransition(isFocused);
   }, [isFocused]);
 
-  const router = useRouter();
+  const { goToNextPage } = useNextSurvey();
 
   const onClickNext = useCallback(() => {
     setSurvey({ summaryAlertTime: parseInt(time) });
-
-    router.push("/survey/time-period");
-  }, [time]);
+    goToNextPage();
+  }, [time, goToNextPage]);
 
   const isDone = useMemo(
     () => !!parseInt(time) && !isFocused,

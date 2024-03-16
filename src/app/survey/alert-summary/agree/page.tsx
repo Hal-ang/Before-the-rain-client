@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import BackHeader from "@/components/header/BackHeader";
 import FadeTitle from "@/components/FadeTitle";
@@ -8,32 +8,25 @@ import { LinearButton } from "@/components/button/LinearButton";
 import ProgressBar from "@/components/ProgressBar";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import { surveyAtom } from "@/atom/survey";
-import { useRouter } from "next/navigation";
-import { useSetAtom } from "jotai";
+import { useAtom } from "jotai";
+import useNextSurvey from "@/hooks/survey/useNextSurvey";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
-const AlertSummaryAgreed = () => {
-  const [isAgreed, setIsAgreed] = useState<boolean | null>(null);
-  const setSurvey = useSetAtom(surveyAtom);
-  const router = useRouter();
+const AlertSummaryAgree = () => {
+  const [{ isAgreedSummaryAlert }, setSurvey] = useAtom(surveyAtom);
+  const { goToNextPage } = useNextSurvey();
 
   const getClickEvents = useCallback(
     (agreed: boolean) => ({
       onClick: () => {
-        setIsAgreed(agreed);
-
-        !agreed && setSurvey({ summaryAlertTime: 0 });
+        setSurvey({ isAgreedSummaryAlert: agreed });
       },
-      onRippleEndClick: () => {
-        router.push(
-          agreed ? "/survey/alert-summary/select" : "/survey/time-period"
-        );
-      }
+      onRippleEndClick: goToNextPage
     }),
-    []
+    [goToNextPage]
   );
 
-  const percent = useSurveyProgressPercent(isAgreed !== null);
+  const percent = useSurveyProgressPercent(isAgreedSummaryAlert !== null);
 
   return (
     <main className="min-h-screen w-full flex flex-col">
@@ -59,4 +52,4 @@ const AlertSummaryAgreed = () => {
   );
 };
 
-export default AlertSummaryAgreed;
+export default AlertSummaryAgree;
