@@ -3,6 +3,24 @@ import { HttpResponse, http } from "msw";
 import { CDN_URL } from "@/constants/image";
 import { HOURLY } from "@/constants/mockup";
 
+export const BANNERS = {
+  smile: {
+    desc: "오늘은 조금",
+    title: "안심해도 되겠어요!",
+    imageUrl: CDN_URL + "/smile.png"
+  },
+  worry: {
+    desc: "운에 맡기시려고요?",
+    title: "혹시 몰라요...",
+    imageUrl: CDN_URL + "/worry.png"
+  },
+  umbrella: {
+    desc: "비가 올 확률이 높아요",
+    title: "우산을 챙기세요!",
+    imageUrl: CDN_URL + "/umbrella.png"
+  }
+};
+
 export const handlers = [
   http.get("/user", ({ cookies }) => {
     const { session } = cookies;
@@ -21,23 +39,6 @@ export const handlers = [
     if (!lat || !lon) {
       return new HttpResponse(null, { status: 400 });
     }
-    const BANNERS = {
-      smile: {
-        desc: "오늘은 조금",
-        title: "안심해도 되겠어요!",
-        imageUrl: CDN_URL + "/smile.png"
-      },
-      worry: {
-        desc: "운에 맡기시려고요?",
-        title: "혹시 몰라요...",
-        imageUrl: CDN_URL + "/worry.png"
-      },
-      umbrella: {
-        desc: "비가 올 확률이 높아요",
-        title: "우산을 챙기세요!",
-        imageUrl: CDN_URL + "/umbrella.png"
-      }
-    };
 
     const response =
       (Math.random() * 100) % 2 === 0
