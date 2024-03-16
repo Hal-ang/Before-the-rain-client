@@ -1,12 +1,11 @@
-import React, { useEffect, useLayoutEffect } from "react";
 import {
   enabledLocationPermissionAtom,
   enabledNotificationPermissionAtom
 } from "@/atom/webview";
+import { useEffect, useLayoutEffect } from "react";
 
+import { BooleanStringParam } from "../../../global";
 import { useSetAtom } from "jotai";
-
-type BooleanString = "true" | "false";
 
 const useSetPermissions = () => {
   const setEnabledLocationPermission = useSetAtom(
@@ -17,12 +16,14 @@ const useSetPermissions = () => {
   );
 
   useLayoutEffect(() => {
-    window.updateLocationPermissionEnabled = (enabled: BooleanString) => {
+    window.updateLocationPermissionEnabled = (enabled: BooleanStringParam) => {
       console.log(`Location permission enabled: ${enabled}`);
       setEnabledLocationPermission(Boolean(enabled));
     };
 
-    window.updateNotificationPermissionEnabled = (enabled: BooleanString) => {
+    window.updateNotificationPermissionEnabled = (
+      enabled: BooleanStringParam
+    ) => {
       console.log(`Notification permission enabled: ${enabled}`);
       setEnabledNotificationPermission(Boolean(enabled));
     };

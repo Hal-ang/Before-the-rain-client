@@ -1,4 +1,7 @@
+export type BooleanStringParam = "true" | "false";
+
 type Coordinates = "getUserCoordinates";
+type FCMToken = "getFCMToken";
 type LocationPermission =
   | "updateLocationPermissionEnabled"
   | "requestLocationPermission";
@@ -8,14 +11,19 @@ type NotificationPermission =
 
 declare global {
   interface Window {
-    updateLocationPermissionEnabled: (enabled: "true" | "false") => void;
-    updateNotificationPermissionEnabled: (enabled: "true" | "false") => void;
-    updateLocation: (latitude: string, longitude: string) => void;
+    updateLocationPermissionEnabled: (enabled: BooleanStringParam) => void;
+    updateNotificationPermissionEnabled: (enabled: BooleanStringParam) => void;
+    updateLocation: (lat: string, lon: string) => void;
+    updateFCMToken: (token: string) => void;
     webkit: {
       messageHandlers?: {
         nativeApp: {
           postMessage: (
-            message: Coordinates | LocationPermission | NotificationPermission
+            message:
+              | FCMToken
+              | Coordinates
+              | LocationPermission
+              | NotificationPermission
           ) => void;
         };
       };
