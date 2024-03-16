@@ -6,16 +6,7 @@ import LargeInput from "./LargeInput";
 const attributes = {
   className: "w-96pxr",
   type: "number",
-  inputMode: "numeric" as
-    | "search"
-    | "text"
-    | "none"
-    | "numeric"
-    | "email"
-    | "tel"
-    | "url"
-    | "decimal"
-    | undefined,
+  inputMode: "numeric" as "numeric",
   pattern: "[0-9]*",
   maxLength: 2,
   min: 0,
