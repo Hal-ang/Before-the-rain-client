@@ -1,16 +1,10 @@
-"use client";
-
-import { CardLayout } from "../layout/card";
+import { CardLayout } from "@/components/layout/card";
+import { HourlyWeatherResponse } from "@/api/type";
 import React from "react";
-import WeatherSection from "./WeatherSection";
+import WeatherSection from "@/components/content/WeatherSection";
 import { getKoreanHour } from "@/utils/date";
-import useHourlyWeathersQuery from "@/hooks/quries/useHourlyWeathersQuery";
 
-const HourlyWeathers = () => {
-  const { data } = useHourlyWeathersQuery();
-
-  if (!data) return null;
-
+const HourlyWeatherContainer = ({ data }: { data: HourlyWeatherResponse }) => {
   return (
     <CardLayout state="dark-outline" className="mt-13pxr px-20pxr pt-14pxr">
       {data?.hourly.map((weather) => (
@@ -27,4 +21,4 @@ const HourlyWeathers = () => {
   );
 };
 
-export default HourlyWeathers;
+export default HourlyWeatherContainer;
