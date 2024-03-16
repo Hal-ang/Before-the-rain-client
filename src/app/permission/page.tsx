@@ -1,16 +1,23 @@
 "use client";
 
 import React, { useMemo } from "react";
+import {
+  enabledLocationPermissionAtom,
+  enabledNotificationPermissionAtom
+} from "@/atom/webview";
 
 import BackHeader from "@/components/header/BackHeader";
 import { CardLayout } from "@/components/layout/card";
 import Knowhow from "@/components/content/Knowhow";
 import Switch from "@/components/Switch";
-import { useWebviewContext } from "@/components/Webview";
+import { useAtomValue } from "jotai";
 
 const Permission = () => {
-  const { enabledLocationPermission, enabledNotificationPermission } =
-    useWebviewContext();
+  const enabledNotificationPermission = useAtomValue(
+    enabledNotificationPermissionAtom
+  );
+  const enabledLocationPermission = useAtomValue(enabledLocationPermissionAtom);
+
   const permissions = useMemo(() => {
     return [
       {
