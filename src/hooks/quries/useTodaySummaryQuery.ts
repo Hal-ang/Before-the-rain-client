@@ -1,17 +1,16 @@
 "use client";
 
 import { getTodaySummary } from "@/api";
+import { useAtomValue } from "jotai";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useWebviewContext } from "@/components/Webview";
+import { userCoordinatesAtom } from "@/atom/webview";
 
 const useTodaySummaryQuery = () => {
-  const {
-    coordinate: { latitude, longitude }
-  } = useWebviewContext();
+  const { lat, lon } = useAtomValue(userCoordinatesAtom);
   // longitude 호추 시점 고민해보기.. caching
   return useSuspenseQuery({
-    queryKey: ["/today/summary", latitude, longitude],
-    queryFn: () => getTodaySummary(latitude, longitude)
+    queryKey: ["todaySummary"],
+    queryFn: () => getTodaySummary(lat, lon)
   });
 };
 

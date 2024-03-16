@@ -1,16 +1,15 @@
 "use client";
 
 import { getTodayWeahterBanner } from "@/api";
+import { useAtomValue } from "jotai";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useWebviewContext } from "@/components/Webview";
+import { userCoordinatesAtom } from "@/atom/webview";
 
 const useTodayWeatherBannerQuery = () => {
-  const {
-    coordinate: { latitude, longitude }
-  } = useWebviewContext();
+  const { lat, lon } = useAtomValue(userCoordinatesAtom);
   return useSuspenseQuery({
-    queryKey: ["summary", latitude, longitude],
-    queryFn: () => getTodayWeahterBanner(latitude, longitude)
+    queryKey: ["weatherBanner"],
+    queryFn: () => getTodayWeahterBanner(lat, lon)
   });
 };
 

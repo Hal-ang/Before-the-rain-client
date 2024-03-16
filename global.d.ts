@@ -1,4 +1,4 @@
-type Coordinates = "startUpdatingLocation" | "stopUpdatingLocation";
+type Coordinates = "getUserCoordinates";
 type LocationPermission =
   | "updateLocationPermissionEnabled"
   | "requestLocationPermission";
@@ -10,7 +10,7 @@ declare global {
   interface Window {
     updateLocationPermissionEnabled: (enabled: "true" | "false") => void;
     updateNotificationPermissionEnabled: (enabled: "true" | "false") => void;
-    updateLocation: (latitude: number, longitude: number) => void;
+    updateLocation: (latitude: string, longitude: string) => void;
     webkit: {
       messageHandlers?: {
         nativeApp: {

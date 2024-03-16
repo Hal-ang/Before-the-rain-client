@@ -1,16 +1,16 @@
 "use client";
 
 import { getHourlyWeathers } from "@/api";
+import { useAtomValue } from "jotai";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useWebviewContext } from "@/components/Webview";
+import { userCoordinatesAtom } from "@/atom/webview";
 
 const useHourlyWeathersQuery = () => {
-  const {
-    coordinate: { latitude, longitude }
-  } = useWebviewContext();
+  // TODO : 캐싱, 호출 로직 고민해보기
+  const { lat, lon } = useAtomValue(userCoordinatesAtom);
   return useSuspenseQuery({
-    queryKey: ["/hourly", latitude, longitude],
-    queryFn: () => getHourlyWeathers(latitude, longitude)
+    queryKey: ["hourlyWeathers"],
+    queryFn: () => getHourlyWeathers(lat, lon)
   });
 };
 
