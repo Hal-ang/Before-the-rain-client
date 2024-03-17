@@ -10,5 +10,5 @@ export interface Survey {
   alertBeforeRain: number;
   timePeriods: PeriodValueType[];
   summaryAlertTime: number;
-  isAgreedSummaryAlert: boolean;
+  isAgreedSummaryAlert: boolean | null;
 }

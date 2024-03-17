@@ -5,7 +5,7 @@ const _surveyAtom = atom<Survey>({
   alertBeforeRain: 0,
   timePeriods: [],
   summaryAlertTime: 0,
-  isAgreedSummaryAlert: false
+  isAgreedSummaryAlert: null
 });
 
 export const surveyAtom = atom(

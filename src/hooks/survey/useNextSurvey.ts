@@ -36,11 +36,11 @@ const useNextSurvey = () => {
       return SurveyPaths.Done;
     }
     return "/";
-  }, [pathname, survey]);
+  }, [pathname, survey.isAgreedSummaryAlert]);
 
   const goToNextPage = useCallback(() => {
     router.push(nextPath);
-  }, [nextPath]);
+  }, [nextPath, router]);
 
   return { goToNextPage };
 };
