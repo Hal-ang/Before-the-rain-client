@@ -12,17 +12,16 @@ import BackHeader from "@/components/header/BackHeader";
 import FadeTitle from "@/components/FadeTitle";
 import FixedBottomBar from "@/components/bottombar/FixedBottomBar";
 import ProgressBar from "@/components/ProgressBar";
+import { TRANSITION_DURATIN } from "@/constants/duration";
 import TimeInput from "@/components/input/TimeInput";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import { surveyAtom } from "@/atom/survey";
 import { useAtom } from "jotai";
 import useFocused from "@/hooks/useFocused";
 import useNextSurvey from "@/hooks/survey/useNextSurvey";
-import { useRouter } from "next/navigation";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
 const AlertBefore = () => {
-  const router = useRouter();
   const hourRef = useRef<HTMLInputElement>(null);
   const minuteRef = useRef<HTMLInputElement>(null);
 
@@ -46,7 +45,7 @@ const AlertBefore = () => {
 
     const timeoutID = setTimeout(() => {
       setShouldTransition(true);
-    }, 500);
+    }, TRANSITION_DURATIN);
     return () => {
       clearTimeout(timeoutID);
     };

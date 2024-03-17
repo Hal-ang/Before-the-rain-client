@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 import BackHeader from "@/components/header/BackHeader";
 import CheckBox from "@/components/button/CheckBox";
@@ -11,12 +11,17 @@ import { PeriodValueType } from "@/types/survey";
 import ProgressBar from "@/components/ProgressBar";
 import { TIME_PERIODS } from "@/constants/survey";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
+import { surveyAtom } from "@/atom/survey";
+import { useAtom } from "jotai";
 import useNextPath from "@/hooks/survey/useNextSurvey";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
 const TimePeriod = () => {
   const [shouldTransition, setShouldTransition] = useState(false);
-  const [selectedPeriods, setSelectedPeriods] = useState<PeriodValueType[]>([]);
+  const [{ timePeriods }, setSurvey] = useAtom(surveyAtom);
+  const [selectedPeriods, setSelectedPeriods] = useState<PeriodValueType[]>(
+    timePeriods.length > 0 ? timePeriods : []
+  );
   const [visibleOptions, setVisibleOptions] = useState(false);
 
   useEffect(() => {
@@ -48,6 +53,11 @@ const TimePeriod = () => {
 
   const percent = useSurveyProgressPercent(isDone);
   const { goToNextPage } = useNextPath();
+
+  const onClickNext = useCallback(() => {
+    setSurvey({ timePeriods: selectedPeriods });
+    goToNextPage();
+  }, [goToNextPage, selectedPeriods]);
 
   return (
     <main className="min-h-screen w-full flex flex-col">
@@ -88,7 +98,7 @@ const TimePeriod = () => {
         }
       />
       {isDone && (
-        <FixedBottomBar onRippleEndClick={goToNextPage}>완료</FixedBottomBar>
+        <FixedBottomBar onRippleEndClick={onClickNext}>완료</FixedBottomBar>
       )}
     </main>
   );
