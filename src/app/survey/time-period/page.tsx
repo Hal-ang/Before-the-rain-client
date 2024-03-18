@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import BackHeader from "@/components/header/BackHeader";
 import CheckBox from "@/components/button/CheckBox";
@@ -11,18 +11,15 @@ import { PeriodValueType } from "@/types/survey";
 import ProgressBar from "@/components/ProgressBar";
 import { TIME_PERIODS } from "@/constants/survey";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
-import { surveyAtom } from "@/atom/survey";
-import { useAtom } from "jotai";
 import useNextPath from "@/hooks/survey/useNextSurvey";
+import { useRouter } from "next/navigation";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
 const TimePeriod = () => {
+  const router = useRouter();
   const [shouldTransition, setShouldTransition] = useState(false);
-  const [{ timePeriods }, setSurvey] = useAtom(surveyAtom);
-  const [selectedPeriods, setSelectedPeriods] = useState<PeriodValueType[]>(
-    timePeriods.length > 0 ? timePeriods : []
-  );
-  const [visibleOptions, setVisibleOptions] = useState(false);
+  const [selectedPeriods, setSelectedPeriods] = useState<PeriodValueType[]>([]);
+  const [visibleButton, setVisibleButton] = useState(false);
 
   useEffect(() => {
     const timeoutID = setTimeout(() => {
@@ -38,7 +35,7 @@ const TimePeriod = () => {
     if (!shouldTransition) return;
 
     const timeoutID = setTimeout(() => {
-      setVisibleOptions(true);
+      setVisibleButton(true);
     }, 500);
 
     return () => {
@@ -46,18 +43,13 @@ const TimePeriod = () => {
     };
   }, [shouldTransition]);
 
-  const isDone = useMemo(
+  const isDispatchable = useMemo(
     () => selectedPeriods.length > 0,
     [selectedPeriods.length]
   );
 
-  const percent = useSurveyProgressPercent(isDone);
+  const percent = useSurveyProgressPercent(isDispatchable);
   const { goToNextPage } = useNextPath();
-
-  const onClickNext = useCallback(() => {
-    setSurvey({ timePeriods: selectedPeriods });
-    goToNextPage();
-  }, [goToNextPage, selectedPeriods]);
 
   return (
     <main className="min-h-screen w-full flex flex-col">
@@ -69,7 +61,7 @@ const TimePeriod = () => {
         shouldTransition={shouldTransition}
         Top={<FadeTitle text="맞춰서 알려 드릴게요" />}
         Bottom={
-          visibleOptions ? (
+          visibleButton ? (
             <div className="w-full flex flex-col gap-y-18pxr mt-50pxr">
               {TIME_PERIODS.map(({ label, value, range }) => {
                 const startTime = range[0];
@@ -97,8 +89,8 @@ const TimePeriod = () => {
           ) : null
         }
       />
-      {isDone && (
-        <FixedBottomBar onRippleEndClick={onClickNext}>완료</FixedBottomBar>
+      {isDispatchable && (
+        <FixedBottomBar onRippleEndClick={goToNextPage}>완료</FixedBottomBar>
       )}
     </main>
   );

@@ -6,9 +6,8 @@ export type PeriodValueType =
   | "evening"
   | "night";
 
-export interface SurveyState {
+export interface Survey {
   alertBeforeRain: number;
   timePeriods: PeriodValueType[];
-  summaryAlertTime: number;
-  isAgreedSummaryAlert: boolean | null;
+  summaryAlertTime: string;
 }

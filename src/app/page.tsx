@@ -4,7 +4,6 @@ import { useEffect, useMemo } from "react";
 
 import FadeTitle from "@/components/FadeTitle";
 import { StorageKey } from "@/constants/storage";
-import { TRANSITION_DURATIN } from "@/constants/duration";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -12,7 +11,6 @@ export default function Home() {
 
   const isFirstUser = useMemo(() => {
     if (typeof window === "undefined") return;
-
     return localStorage.getItem(StorageKey.UserId) === null;
   }, []);
 
@@ -20,8 +18,9 @@ export default function Home() {
     if (isFirstUser === undefined) return;
 
     const timeoutID = setTimeout(() => {
-      router.push(isFirstUser ? "/onboarding" : "/content");
-    }, 1000);
+      // router.push(isFirstUser ? "/onboarding" : "/content");
+      router.push("/content");
+    }, 1500);
 
     return () => {
       clearTimeout(timeoutID);

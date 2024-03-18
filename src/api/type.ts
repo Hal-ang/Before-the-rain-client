@@ -1,5 +1,3 @@
-import { PeriodValueType } from "@/types/survey";
-
 export interface TodayBannerResponse {
   desc: string;
   title: string;
@@ -39,17 +37,4 @@ export interface HourlyWeatherResponse {
     pop: number;
     clothes: Clothes[];
   }[];
-}
-
-export interface UserReponse {
-  id: number;
-  fcmToken: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface Survey {
-  alertBeforeRain: number;
-  timePeriods: PeriodValueType[];
-  summaryAlertTime: null | number;
 }

@@ -1,17 +1,15 @@
-import { SurveyState } from "@/types/survey";
+import { Survey } from "@/types/survey";
 import { atom } from "jotai";
 
-export const SURVEY_INITIAL_STATE = {
+const _surveyAtom = atom<Survey>({
   alertBeforeRain: 0,
   timePeriods: [],
-  summaryAlertTime: 0,
-  isAgreedSummaryAlert: null
-};
-const _surveyAtom = atom<SurveyState>(SURVEY_INITIAL_STATE);
+  summaryAlertTime: ""
+});
 
 export const surveyAtom = atom(
   (get) => get(_surveyAtom),
-  (get, set, _survey: Partial<SurveyState>) => {
+  (get, set, _survey: Partial<Survey>) => {
     const survey = get(_surveyAtom);
     set(_surveyAtom, { ...survey, ..._survey });
   }

@@ -12,8 +12,4 @@ export const TIME_PERIODS: {
   { label: "밤", value: "night", range: [21, 22, 23] }
 ];
 
-export const SURVEY_STEPS = [
-  "alert-before",
-  "alert-summary/agreed",
-  "time-period"
-];
+export const SURVEY_STEPS = ["alert-before", "alert-summary", "time-period"];
