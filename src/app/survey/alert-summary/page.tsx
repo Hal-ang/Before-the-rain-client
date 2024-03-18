@@ -1,21 +1,28 @@
 "use client";
 
+import React, { useCallback, useState } from "react";
+
 import BackHeader from "@/components/header/BackHeader";
 import FadeTitle from "@/components/FadeTitle";
 import { LinearButton } from "@/components/button/LinearButton";
 import ProgressBar from "@/components/ProgressBar";
-import React from "react";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
-import { surveyAtom } from "@/atom/survey";
-import { useAtom } from "jotai";
-import { useRouter } from "next/navigation";
+import useNextSurvey from "@/hooks/survey/useNextSurvey";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
-const AlertSummaryAgree = () => {
-  const [{ isAgreedSummaryAlert }, setSurvey] = useAtom(surveyAtom);
-  const router = useRouter();
+const AlertSummary = () => {
+  const [isDone, setIsDone] = useState(false);
 
-  const percent = useSurveyProgressPercent(isAgreedSummaryAlert !== null);
+  const { goToNextPage } = useNextSurvey();
+
+  const handleClick = useCallback((isAgree: boolean) => {
+    // setIsDone(true);
+    // setTimeout(() => {
+    //   goToNextPage();
+    // }, 500);
+  }, []);
+
+  const percent = useSurveyProgressPercent(isDone);
 
   return (
     <main className="min-h-screen w-full flex flex-col">
@@ -28,20 +35,10 @@ const AlertSummaryAgree = () => {
         Top={<FadeTitle text={`요약 알림을\n받으시겠어요?`} />}
         Bottom={
           <div className="flex flex-row items-center gap-x-18pxr">
-            <LinearButton
-              state="primary"
-              onClick={() => setSurvey({ isAgreedSummaryAlert: true })}
-              onRippleEndClick={() =>
-                router.push("/survey/alert-summary/select")
-              }
-            >
+            <LinearButton state="primary" onClick={() => handleClick(true)}>
               네
             </LinearButton>
-            <LinearButton
-              state="secondary"
-              onClick={() => setSurvey({ isAgreedSummaryAlert: false })}
-              onRippleEndClick={() => router.push("/survey/time-period")}
-            >
+            <LinearButton state="secondary" onRippleEndClick={goToNextPage}>
               아니요
             </LinearButton>
           </div>
@@ -51,4 +48,4 @@ const AlertSummaryAgree = () => {
   );
 };
 
-export default AlertSummaryAgree;
+export default AlertSummary;
