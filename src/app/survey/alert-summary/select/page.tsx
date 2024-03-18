@@ -11,9 +11,8 @@ import React, {
 import BackHeader from "@/components/header/BackHeader";
 import FadeTitle from "@/components/FadeTitle";
 import FixedBottomBar from "@/components/bottombar/FixedBottomBar";
+import LargeInput from "@/components/input/LargeInput";
 import ProgressBar from "@/components/ProgressBar";
-import { TRANSITION_DURATIN } from "@/constants/duration";
-import TimeInput from "@/components/input/TimeInput";
 import TransitionTightSection from "@/components/layout/TransitionTightSection";
 import { surveyAtom } from "@/atom/survey";
 import { useAtom } from "jotai";
@@ -21,31 +20,22 @@ import useFocused from "@/hooks/useFocused";
 import useNextSurvey from "@/hooks/survey/useNextSurvey";
 import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
 
-const AlertBefore = () => {
-  const hourRef = useRef<HTMLInputElement>(null);
-  const minuteRef = useRef<HTMLInputElement>(null);
-
-  const [{ alertBeforeRain }, setSurvey] = useAtom(surveyAtom);
-
-  const [time, setTime] = useState(() => alertBeforeRain);
-
-  const { isFocused: isHourFocused, bind: hourBind } = useFocused();
-  const { isFocused: isMinuteFocused, bind: minuteBind } = useFocused();
-
-  const isFocused = useMemo(
-    () => isHourFocused || isMinuteFocused,
-    [isHourFocused, isMinuteFocused]
+const AlertSummarySelect = () => {
+  const timeRef = useRef<HTMLInputElement>(null);
+  const { isFocused, bind } = useFocused();
+  const [{ summaryAlertTime }, setSurvey] = useAtom(surveyAtom);
+  const [time, setTime] = useState(
+    summaryAlertTime ? String(summaryAlertTime) : ""
   );
-  const isDone = useMemo(() => time > 0 && !isFocused, [isFocused, time]);
 
   const [shouldTransition, setShouldTransition] = useState(false);
 
   useEffect(() => {
-    if (alertBeforeRain) return;
+    if (summaryAlertTime) return;
 
     const timeoutID = setTimeout(() => {
       setShouldTransition(true);
-    }, TRANSITION_DURATIN);
+    }, 500);
     return () => {
       clearTimeout(timeoutID);
     };
@@ -56,31 +46,52 @@ const AlertBefore = () => {
   }, [isFocused]);
 
   const { goToNextPage } = useNextSurvey();
+
   const onClickNext = useCallback(() => {
-    setSurvey({ alertBeforeRain: time });
+    setSurvey({ summaryAlertTime: parseInt(time) });
     goToNextPage();
   }, [time, goToNextPage]);
+
+  const isDone = useMemo(
+    () => !!parseInt(time) && !isFocused,
+    [isFocused, time]
+  );
 
   const percent = useSurveyProgressPercent(isDone);
 
   return (
-    <main className="w-full flex flex-col min-h-screen">
+    <main className="min-h-screen w-full flex flex-col">
       <BackHeader />
       <section className="w-full px-12pxr">
         <ProgressBar percent={percent} />
       </section>
-
       <TransitionTightSection
         shouldTransition={shouldTransition}
-        Top={<FadeTitle text="미리 알려 드릴게요" />}
+        Top={<FadeTitle text={`요약 알림을\n언제 받으시겠어요?`} />}
         Bottom={
-          <TimeInput
-            useTime={[time, setTime]}
-            hourRef={hourRef}
-            minuteRef={minuteRef}
-            hourBind={hourBind}
-            minuteBind={minuteBind}
-          />
+          <div className="flex flex0row items-center gap-x-16pxr">
+            <LargeInput
+              ref={timeRef}
+              className="w-96pxr"
+              type="number"
+              inputMode="numeric"
+              maxLength={2}
+              placeholder="0"
+              pattern="[0-9]*"
+              value={time}
+              onChange={(e) => {
+                const value = e.target.value;
+
+                setTime(parseInt(value) > 24 ? "24" : value.slice(0, 2));
+
+                if (value.length === 2) {
+                  timeRef.current?.blur();
+                }
+              }}
+              {...bind}
+            />
+            <p className="text-white font-regular text-18pxr">시</p>
+          </div>
         }
       />
       {isDone && (
@@ -90,4 +101,4 @@ const AlertBefore = () => {
   );
 };
 
-export default AlertBefore;
+export default AlertSummarySelect;
