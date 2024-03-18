@@ -27,7 +27,7 @@ const Content = () => {
         </div>
         <div className="mt-22pxr">
           <Link
-            href="/survey"
+            href="/survey/alert-before"
             className="text-light-secondary text-15pxr font-regular"
           >
             알람 설정
