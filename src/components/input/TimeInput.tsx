@@ -42,8 +42,11 @@ const TimeInput = ({
     const hourNum = parseInt(hour);
     const minuteNum = parseInt(minute);
 
-    if (isNaN(hourNum)) return;
-    setTime(hourNum * 60 + (isNaN(minuteNum) ? 0 : minuteNum));
+    if (isNaN(hourNum) && isNaN(minuteNum)) return;
+
+    setTime(
+      isNaN(hourNum) ? 0 : hourNum * 60 + (isNaN(minuteNum) ? 0 : minuteNum)
+    );
   }, [hour, minute]);
 
   return (
