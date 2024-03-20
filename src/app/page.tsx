@@ -4,7 +4,6 @@ import { useEffect, useMemo } from "react";
 
 import FadeTitle from "@/components/FadeTitle";
 import { StorageKey } from "@/constants/storage";
-import { TRANSITION_DURATIN } from "@/constants/duration";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
