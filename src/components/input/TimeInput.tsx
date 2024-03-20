@@ -42,7 +42,6 @@ const TimeInput = ({
     const hourNum = parseInt(hour);
     const minuteNum = parseInt(minute);
 
-    console.log(minuteNum);
     if (isNaN(hourNum) && isNaN(minuteNum)) return;
     let validNum = 0;
     if (!isNaN(hourNum)) {
