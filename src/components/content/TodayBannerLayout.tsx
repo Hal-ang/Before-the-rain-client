@@ -32,7 +32,7 @@ const TodayBannerLayout = ({
         <p className="font-medium text-15pxr">{desc}</p>
         <p className="mt-2pxr font-bold text-25pxr">{title}</p>
         <p className="mt-12pxr text-light-secondary font-regular text-10pxr leading-11pxr">
-          금일 최고 강수 확률 {rainGage * 100}%
+          금일 강수 확률 {Math.floor(rainGage * 100)}%
         </p>
       </div>
     </CardLayout>

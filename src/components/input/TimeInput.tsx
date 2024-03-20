@@ -42,11 +42,17 @@ const TimeInput = ({
     const hourNum = parseInt(hour);
     const minuteNum = parseInt(minute);
 
+    console.log(minuteNum);
     if (isNaN(hourNum) && isNaN(minuteNum)) return;
+    let validNum = 0;
+    if (!isNaN(hourNum)) {
+      validNum += hourNum * 60;
+    }
 
-    setTime(
-      isNaN(hourNum) ? 0 : hourNum * 60 + (isNaN(minuteNum) ? 0 : minuteNum)
-    );
+    if (!isNaN(minuteNum)) {
+      validNum += minuteNum;
+    }
+    setTime(validNum);
   }, [hour, minute]);
 
   return (
