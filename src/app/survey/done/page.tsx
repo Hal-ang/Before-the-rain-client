@@ -40,7 +40,11 @@ const Done = () => {
     }
   });
 
-  const { mutate: _updateSurvey, isPending: isUpdating } = useMutation({
+  const {
+    mutate: _updateSurvey,
+    isPending: isUpdating,
+    isSuccess: isUpdatingSuccess
+  } = useMutation({
     mutationFn: (params: { survey: Survey; userId: string }) =>
       updateSurvey(params.survey, params.userId),
     onSuccess() {
@@ -51,8 +55,9 @@ const Done = () => {
   const titleText = useMemo(() => {
     if (isUpdating || isCreating) return "설정 중입니다..";
     else if (isCreatingSuccess) return "환영합니다!";
-    return "수정 되었습니다!";
-  }, [isUpdating, isCreating, isCreatingSuccess]);
+    else if (isUpdatingSuccess) return "수정 되었습니다!";
+    return `문제가 발생했어요\n 앱을 다시 시작해주세요`;
+  }, [isUpdating, isCreating, isCreatingSuccess, isUpdatingSuccess]);
 
   const fcmToken = useAtomValue(FCMTokenAtom);
 
