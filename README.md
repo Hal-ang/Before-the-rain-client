@@ -60,7 +60,7 @@
 
 
 ### 1. 알림 설정
-![survey](https://github.com/Hal-ang/Before-the-rain-server/assets/68503014/c863c534-9c2a-41ad-bcc6-08afcb1dcb30) | ![push](https://github.com/Hal-ang/Before-the-rain-server/assets/68503014/08423474-6d16-4add-9877-de3a13be8dc3)
+![survey](https://github.com/Hal-ang/Before-the-rain-client/assets/68503014/4b267368-dc00-47b7-be6d-813a4ae4e5e8) | ![push](https://github.com/Hal-ang/Before-the-rain-server/assets/68503014/08423474-6d16-4add-9877-de3a13be8dc3)
 --- | --- |
 
 
@@ -78,7 +78,7 @@
 ### 2. 날씨와 옷차림 확인
 
 <p align="center">
-	<img src="https://github.com/Hal-ang/Before-the-rain-server/assets/68503014/eac95b7c-0c58-454f-abb7-24962a6772d3" align="center" width="33%">
+	<img src="https://github.com/Hal-ang/Before-the-rain-client/assets/68503014/d51d66ea-f214-4386-ad28-65f5cf60d2db" align="center" width="33%">
 </p>
 
 
