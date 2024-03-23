@@ -1,43 +1,36 @@
-import {
-  enabledLocationPermissionAtom,
-  enabledNotificationPermissionAtom
-} from "@/atom/webview";
 import { useEffect, useLayoutEffect } from "react";
 
 import { BooleanStringParam } from "../../../global";
+import { enabledNotificationPermissionAtom } from "./../../atom/webview";
 import { useSetAtom } from "jotai";
 
 const useSetPermissions = () => {
-  const setEnabledLocationPermission = useSetAtom(
-    enabledLocationPermissionAtom
-  );
   const setEnabledNotificationPermission = useSetAtom(
     enabledNotificationPermissionAtom
   );
 
   useLayoutEffect(() => {
-    window.updateLocationPermissionEnabled = (enabled: BooleanStringParam) => {
-      console.log(`Location permission enabled: ${enabled}`);
-      setEnabledLocationPermission(Boolean(enabled));
-    };
-
+    // 브릿지 수신 함수
+    // fetchNotiPermissionEnabled 함수 호출 후 응답을 반환 받는 함수
     window.updateNotificationPermissionEnabled = (
       enabled: BooleanStringParam
     ) => {
       console.log(`Notification permission enabled: ${enabled}`);
-      setEnabledNotificationPermission(Boolean(enabled));
+      setEnabledNotificationPermission(enabled === "true");
     };
   }, []);
 
   useEffect(() => {
-    if (!window?.webkit?.messageHandlers) return;
+    // 브릿지 발신 함수
+    const fetchNotiPermissionEnabled = () => {
+      if (!window?.webkit?.messageHandlers) return;
+      window.webkit.messageHandlers.nativeApp.postMessage(
+        "updateNotificationPermissionEnabled"
+      );
+    };
+    fetchNotiPermissionEnabled();
 
-    window.webkit.messageHandlers.nativeApp.postMessage(
-      "updateLocationPermissionEnabled"
-    );
-    window.webkit.messageHandlers.nativeApp.postMessage(
-      "updateNotificationPermissionEnabled"
-    );
+    window.addEventListener("visibilitychange", fetchNotiPermissionEnabled);
   }, []);
 };
 
