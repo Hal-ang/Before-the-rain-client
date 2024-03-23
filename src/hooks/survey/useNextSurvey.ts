@@ -25,14 +25,14 @@ const useNextSurvey = () => {
 
   const nextPath = useMemo(() => {
     if (pathname.includes(SurveyPaths.AlertBefore)) {
+      return SurveyPaths.TimePeriod;
+    } else if (pathname.includes(SurveyPaths.TimePeriod)) {
       return SurveyPaths.AlertSummaryAgree;
     } else if (pathname.includes(SurveyPaths.AlertSummaryAgree)) {
       return survey.isAgreedSummaryAlert
         ? SurveyPaths.AlertSummarySelect
-        : SurveyPaths.TimePeriod;
+        : SurveyPaths.Done;
     } else if (pathname.includes(SurveyPaths.AlertSummarySelect)) {
-      return SurveyPaths.TimePeriod;
-    } else if (pathname.includes(SurveyPaths.TimePeriod)) {
       return SurveyPaths.Done;
     }
     return "/";

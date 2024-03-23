@@ -18,24 +18,25 @@ const useSurveyProgressPercent = (isDone: boolean) => {
         start: 0,
         end: stepValue
       };
-    } else if (pathname === SurveyPaths.AlertSummaryAgree) {
+    } else if (pathname === SurveyPaths.TimePeriod) {
       return {
         start: stepValue,
+        end: stepValue * 2
+      };
+    } else if (pathname === SurveyPaths.AlertSummaryAgree) {
+      return {
+        start: stepValue * 2,
         end: survey.isAgreedSummaryAlert
-          ? stepValue + stepValue / 2
-          : stepValue * 2
+          ? stepValue * 2 + stepValue / 2
+          : stepValue * 3
       };
     } else if (pathname === SurveyPaths.AlertSummarySelect) {
       return {
-        start: stepValue + stepValue / 2,
-        end: stepValue * 2
-      };
-    } else if (pathname === SurveyPaths.TimePeriod) {
-      return {
-        start: stepValue * 2,
+        start: stepValue * 2 + stepValue / 2,
         end: stepValue * 3
       };
     }
+
     return null;
   }, [pathname, survey.isAgreedSummaryAlert]);
 

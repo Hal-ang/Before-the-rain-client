@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Suspense } from "react";
 
 import { CardLayout } from "@/components/layout/card";
@@ -14,7 +16,6 @@ const Content = () => {
       <Header text="비가 오기 전에" enableSticky />
       <section className="grow flex flex-col px-20pxr pt-7pxr">
         <Suspense
-          // TODO : suspense UI 만들기
           fallback={<CardLayout state="dark-outline">loading</CardLayout>}
         >
           <TodayBanner />

@@ -40,7 +40,7 @@ const AlertSummaryAgree = () => {
             <LinearButton
               state="secondary"
               onClick={() => setSurvey({ isAgreedSummaryAlert: false })}
-              onRippleEndClick={() => router.push("/survey/time-period")}
+              onRippleEndClick={() => router.push("/survey/done")}
             >
               아니요
             </LinearButton>

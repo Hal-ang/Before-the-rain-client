@@ -6,10 +6,10 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { userCoordinatesAtom } from "@/atom/webview";
 
 const useHourlyWeathersQuery = () => {
-  // TODO : 캐싱, 호출 로직 고민해보기
   const { lat, lon } = useAtomValue(userCoordinatesAtom);
+
   return useSuspenseQuery({
-    queryKey: ["hourlyWeathers"],
+    queryKey: ["hourlyWeathers", lat, lon],
     queryFn: () => getHourlyWeathers(lat, lon)
   });
 };

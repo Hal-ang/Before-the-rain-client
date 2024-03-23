@@ -7,8 +7,9 @@ import { userCoordinatesAtom } from "@/atom/webview";
 
 const useTodayWeatherBannerQuery = () => {
   const { lat, lon } = useAtomValue(userCoordinatesAtom);
+
   return useSuspenseQuery({
-    queryKey: ["weatherBanner"],
+    queryKey: ["weatherBanner", lat, lon],
     queryFn: () => getTodayWeahterBanner(lat, lon)
   });
 };
