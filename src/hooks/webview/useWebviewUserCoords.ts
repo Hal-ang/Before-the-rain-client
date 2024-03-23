@@ -2,7 +2,7 @@ import { useLayoutEffect } from "react";
 import { useSetAtom } from "jotai";
 import { userCoordinatesAtom } from "@/atom/webview";
 
-const useSetCoordinates = () => {
+const useWebviewUserCoords = () => {
   const setUserCoordinates = useSetAtom(userCoordinatesAtom);
 
   useLayoutEffect(() => {
@@ -26,4 +26,4 @@ const useSetCoordinates = () => {
   }, []);
 };
 
-export default useSetCoordinates;
+export default useWebviewUserCoords;

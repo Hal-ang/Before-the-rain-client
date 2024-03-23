@@ -2,15 +2,16 @@
 
 import React, { ReactNode } from "react";
 
-import useSetCoordinates from "@/hooks/webview/useSetCoordinates";
-import useSetFCMToken from "@/hooks/webview/useSetFCMToken";
-import useSetPermissions from "@/hooks/webview/useSetPermissions";
 import useUpdateUserTokenMutation from "@/hooks/mutations/useUpdateUserTokenMutation";
+import useWebviewFCMToken from "@/hooks/webview/useWebviewFCMToken";
+import useWebviewNotification from "@/hooks/webview/useWebviewNotification";
+import useWebviewUserCoords from "@/hooks/webview/useWebviewUserCoords";
 
 const Webview = ({ children }: { children: ReactNode }) => {
-  useSetPermissions();
-  useSetCoordinates();
-  useSetFCMToken();
+  useWebviewNotification();
+  useWebviewUserCoords();
+
+  useWebviewFCMToken();
   useUpdateUserTokenMutation();
 
   return <>{children}</>;

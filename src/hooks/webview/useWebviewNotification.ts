@@ -1,10 +1,10 @@
 import { useEffect, useLayoutEffect } from "react";
 
 import { BooleanStringParam } from "../../../global";
-import { enabledNotificationPermissionAtom } from "./../../atom/webview";
+import { enabledNotificationPermissionAtom } from "../../atom/webview";
 import { useSetAtom } from "jotai";
 
-const useSetPermissions = () => {
+const useWebviewNotification = () => {
   const setEnabledNotificationPermission = useSetAtom(
     enabledNotificationPermissionAtom
   );
@@ -34,4 +34,4 @@ const useSetPermissions = () => {
   }, []);
 };
 
-export default useSetPermissions;
+export default useWebviewNotification;

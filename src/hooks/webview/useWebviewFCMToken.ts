@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect } from "react";
 import { FCMTokenAtom } from "@/atom/webview";
 import { useSetAtom } from "jotai";
 
-const useSetFCMToken = () => {
+const useWebviewFCMToken = () => {
   const setFCMToken = useSetAtom(FCMTokenAtom);
 
   useLayoutEffect(() => {
@@ -21,4 +21,4 @@ const useSetFCMToken = () => {
   }, []);
 };
 
-export default useSetFCMToken;
+export default useWebviewFCMToken;
