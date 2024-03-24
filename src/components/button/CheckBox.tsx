@@ -13,13 +13,18 @@ export interface CheckBoxProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const CheckBox = ({ label, desc, checked, onClick }: CheckBoxProps) => {
   return (
     <RippleButton
+      data-testid="checkBox"
       onClick={onClick}
       className={`py-10pxr pl-10pxr pr-14pxr rounded-100pxr font-medium border border-dark-outline flex flex-row items-center ${
         checked ? "bg-dark-on-secondary" : "bg-black"
       }`}
     >
       <div className="w-55pxr flex flex-row justify-between items-center">
-        {checked ? <ActiveRadio /> : <InactiveRadio />}
+        {checked ? (
+          <ActiveRadio data-testid="checkedSvg" />
+        ) : (
+          <InactiveRadio data-testid="uncheckedSvg" />
+        )}
         <p className="leading-20pxr text-15pxr text-dark-on-secondary-container">
           {label}
         </p>
