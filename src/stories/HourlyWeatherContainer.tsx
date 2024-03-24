@@ -6,7 +6,11 @@ import { getKoreanHour } from "@/utils/date";
 
 const HourlyWeatherContainer = ({ data }: { data: HourlyWeatherResponse }) => {
   return (
-    <CardLayout state="dark-outline" className="mt-13pxr px-20pxr pt-14pxr">
+    <CardLayout
+      data-testid="HourlyWeatherContainer"
+      state="dark-outline"
+      className="mt-13pxr px-20pxr pt-14pxr"
+    >
       {data?.hourly.map((weather) => (
         <WeatherSection
           key={weather.dt}
