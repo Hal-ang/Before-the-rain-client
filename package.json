@@ -10,6 +10,7 @@
     "mock": "npx tsx watch ./src/mocks/http.ts",
     "dev:mock": "concurrently --kill-others \"NEXT_PUBLIC_API_MOCKING=enabled next dev\" \"npx tsx watch ./src/mocks/http.ts\"",
     "storybook": "storybook dev -p 6006",
+    "test-storybook": "test-storybook --watch",
     "build-storybook": "storybook build",
     "bundle": "ANALYZE=true npm run build"
   },
