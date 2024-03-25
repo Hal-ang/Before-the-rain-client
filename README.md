@@ -2,7 +2,10 @@
 	<img src="https://github.com/Hal-ang/Before-the-rain-server/assets/68503014/77578c4b-6b1d-4438-8abd-c70ab5088775" width="80" align="center">
 </p>
 
+
 <h1 align="center">비가 오기 전에 - IOS</h1>
+
+[앱스토어 링크](https://apps.apple.com/app/%EB%B9%84%EA%B0%80-%EC%98%A4%EA%B8%B0-%EC%A0%84%EC%97%90/id6479691792)
 
 ### @everyone 이런 적.... 있으시죠?
 
@@ -42,7 +45,7 @@
 
 ---
 
-[App Store]()
+
 
 ### 귀찮은 당신을 위해 준비했습니다!
 
