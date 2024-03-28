@@ -22,7 +22,7 @@ const WeatherSection = ({
       <div className="flex-none flex flex-col items-center w-30pxr">
         <p className="font-medium text-10pxr">{hour}시</p>
         <p className="mt-2pxr font-regular text-9pxr text-light-secondary">
-          {rainGage * 100}%
+          {Math.floor(rainGage * 100)}%
         </p>
       </div>
       <Image
