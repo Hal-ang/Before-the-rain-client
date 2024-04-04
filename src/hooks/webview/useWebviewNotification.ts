@@ -9,7 +9,7 @@ const useWebviewNotification = () => {
     enabledNotificationPermissionAtom
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     // 브릿지 수신 함수
     // fetchNotiPermissionEnabled 함수 호출 후 응답을 반환 받는 함수
     window.updateNotificationPermissionEnabled = (

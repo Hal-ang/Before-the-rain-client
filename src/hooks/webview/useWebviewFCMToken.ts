@@ -6,7 +6,7 @@ import { useSetAtom } from "jotai";
 const useWebviewFCMToken = () => {
   const setFCMToken = useSetAtom(FCMTokenAtom);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     // 브릿지 수신 함수
     window.updateFCMToken = (token: string) => {
       console.log(`FCM Token: ${token}`);

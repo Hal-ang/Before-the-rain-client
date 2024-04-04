@@ -14,17 +14,17 @@ export const metadata: Metadata = {
 const myFont = localFont({
   src: [
     {
-      path: "../fonts/SpoqaHanSansNeo-Bold.woff2",
+      path: "../../public/fonts/SpoqaHanSansNeo-Bold.woff2",
       weight: "700",
       style: "normal"
     },
     {
-      path: "../fonts/SpoqaHanSansNeo-Medium.woff2",
+      path: "../../public/fonts/SpoqaHanSansNeo-Medium.woff2",
       weight: "500",
       style: "normal"
     },
     {
-      path: "../fonts/SpoqaHanSansNeo-Regular.woff2",
+      path: "../../public/fonts/SpoqaHanSansNeo-Regular.woff2",
       weight: "400",
       style: "normal"
     }

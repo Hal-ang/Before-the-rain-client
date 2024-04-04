@@ -1,11 +1,12 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
+
 import { useSetAtom } from "jotai";
 import { userCoordinatesAtom } from "@/atom/webview";
 
 const useWebviewUserCoords = () => {
   const setUserCoordinates = useSetAtom(userCoordinatesAtom);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     // 브릿지 수신 함수
     // 위치 권한에 동의한 경우 스위프트의 유저 위치 모니터링 함수 내부에서 자동 호출
     window.updateLocation = (lat: string, lon: string) => {
