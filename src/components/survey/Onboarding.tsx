@@ -4,12 +4,11 @@ import { useEffect, useState } from "react";
 
 import FadeTitle from "../FadeTitle";
 import { PAGE_TRANSITION_DURATION } from "@/constants/duration";
-import { SurveyStepProps } from "./SurveyFlow";
 import { useInterval } from "@/hooks/useInterval";
 
 const STEPS = ["첫 이용이시네요", "설정을 진행합니다!"];
 
-const Onboarding = ({ onNext }: SurveyStepProps) => {
+const Onboarding = ({ onNext }: { onNext: () => void }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useInterval(() => {
@@ -19,7 +18,7 @@ const Onboarding = ({ onNext }: SurveyStepProps) => {
   useEffect(() => {
     if (currentIndex < STEPS.length) return;
 
-    onNext?.();
+    onNext();
   }, [currentIndex, onNext]);
 
   return (

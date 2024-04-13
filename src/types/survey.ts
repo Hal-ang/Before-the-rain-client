@@ -11,4 +11,5 @@ export interface SurveyState {
   timePeriods: PeriodValueType[];
   summaryAlertTime: number;
   isAgreedSummaryAlert: boolean | null;
+  step: number;
 }

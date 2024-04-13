@@ -1,27 +1,26 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
-import BackHeader from "@/components/header/BackHeader";
-import CheckBox from "@/components/button/CheckBox";
-import FadeTitle from "@/components/FadeTitle";
-import FixedBottomBar from "@/components/bottombar/FixedBottomBar";
+import CheckBox from "../button/CheckBox";
+import FadeTitle from "../FadeTitle";
+import FixedBottomBar from "../bottombar/FixedBottomBar";
 import { PAGE_TRANSITION_DURATION } from "@/constants/duration";
 import { PeriodValueType } from "@/types/survey";
-import ProgressBar from "@/components/ProgressBar";
 import { TIME_PERIODS } from "@/constants/survey";
-import TransitionTightSection from "@/components/layout/TransitionTightSection";
-import { surveyAtom } from "@/atom/survey";
-import { useAtom } from "jotai";
-import useNextPath from "@/hooks/survey/useNextSurvey";
-import useSurveyProgressPercent from "@/hooks/survey/useSurveyProgressPercent";
+import TransitionTightSection from "../layout/TransitionTightSection";
 
-const TimePeriod = () => {
+const TimePeriods = ({
+  onNext,
+  defaultValue
+}: {
+  onNext: (timePeriods: PeriodValueType[]) => void;
+  defaultValue: PeriodValueType[];
+}) => {
   const [shouldTransition, setShouldTransition] = useState(false);
-  const [{ timePeriods }, setSurvey] = useAtom(surveyAtom);
-  const [selectedPeriods, setSelectedPeriods] = useState<PeriodValueType[]>(
-    timePeriods.length > 0 ? timePeriods : []
-  );
+
+  const [timePeriods, setTimePeriods] =
+    useState<PeriodValueType[]>(defaultValue);
   const [visibleOptions, setVisibleOptions] = useState(false);
 
   useEffect(() => {
@@ -46,25 +45,10 @@ const TimePeriod = () => {
     };
   }, [shouldTransition]);
 
-  const isDone = useMemo(
-    () => selectedPeriods.length > 0,
-    [selectedPeriods.length]
-  );
-
-  const percent = useSurveyProgressPercent(isDone);
-  const { goToNextPage } = useNextPath();
-
-  const onClickNext = useCallback(() => {
-    setSurvey({ timePeriods: selectedPeriods });
-    goToNextPage();
-  }, [goToNextPage, selectedPeriods]);
+  const isDone = timePeriods.length > 0;
 
   return (
-    <main className="min-h-screen w-full flex flex-col">
-      <BackHeader />
-      <section className="w-full px-12pxr">
-        <ProgressBar percent={percent} />
-      </section>
+    <>
       <TransitionTightSection
         shouldTransition={shouldTransition}
         Top={<FadeTitle text="맞춰서 알려 드릴게요" />}
@@ -81,10 +65,10 @@ const TimePeriod = () => {
                   <CheckBox
                     key={value}
                     label={label}
-                    checked={selectedPeriods.includes(value)}
+                    checked={timePeriods.includes(value)}
                     desc={desc}
                     onClick={() => {
-                      setSelectedPeriods((sp) =>
+                      setTimePeriods((sp) =>
                         sp.includes(value)
                           ? sp.filter((v) => v !== value)
                           : [...sp, value]
@@ -98,10 +82,16 @@ const TimePeriod = () => {
         }
       />
       {isDone && (
-        <FixedBottomBar onRippleEndClick={onClickNext}>완료</FixedBottomBar>
+        <FixedBottomBar
+          onRippleEndClick={() => {
+            onNext(timePeriods);
+          }}
+        >
+          완료
+        </FixedBottomBar>
       )}
-    </main>
+    </>
   );
 };
 
-export default TimePeriod;
+export default TimePeriods;

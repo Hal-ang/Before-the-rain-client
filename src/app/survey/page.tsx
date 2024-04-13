@@ -1,14 +1,10 @@
-import Flex from "@/components/Flex";
-import Onboarding from "@/components/survey/Onboarding";
+"use client";
+
 import React from "react";
-import SurveyFlow from "@/components/survey/SurveyFlow";
+import Survey from "@/components/survey/Survey";
 
 const SurveyPage = () => {
-  return (
-    <Flex as="main" direction="column" className="min-h-screen w-full">
-      <SurveyFlow Onboarding={Onboarding}></SurveyFlow>
-    </Flex>
-  );
+  return <Survey onSubmit={() => {}} />;
 };
 
 export default SurveyPage;

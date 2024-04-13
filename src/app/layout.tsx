@@ -1,5 +1,6 @@
 import "./globals.css";
 
+import AuthGuard from "@/components/auth/AuthGuard";
 import MSW from "@/components/\bmsw";
 import type { Metadata } from "next";
 import Providers from "../components/providers";
@@ -43,15 +44,17 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`${myFont.className} bg-black`}>
         <StyledComponentsRegistry>
-          <Providers>
-            {process.env.NEXT_PUBLIC_API_MOCKING === "enabled" ? (
-              <MSW>
+          <AuthGuard>
+            <Providers>
+              {process.env.NEXT_PUBLIC_API_MOCKING === "enabled" ? (
+                <MSW>
+                  <Webview>{children}</Webview>
+                </MSW>
+              ) : (
                 <Webview>{children}</Webview>
-              </MSW>
-            ) : (
-              <Webview>{children}</Webview>
-            )}
-          </Providers>
+              )}
+            </Providers>
+          </AuthGuard>
         </StyledComponentsRegistry>
       </body>
     </html>

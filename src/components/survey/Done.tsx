@@ -1,27 +1,24 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
 import { SURVEY_INITIAL_STATE, surveyAtom } from "@/atom/survey";
 import { createUser, updateSurvey } from "@/api";
 import { useAtom, useAtomValue } from "jotai";
+import { useEffect, useMemo } from "react";
 
 import { DotLottiePlayer } from "@dotlottie/react-player";
 import { FCMTokenAtom } from "@/atom/webview";
-import FadeTitle from "@/components/FadeTitle";
+import FadeTitle from "../FadeTitle";
 import { StorageKey } from "@/constants/storage";
 import { Survey } from "@/api/type";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import useUser from "@/hooks/useUser";
 
 const particleData = require("/public/particle.lottie");
 
 const Done = () => {
   const [survey, setSurvey] = useAtom(surveyAtom);
   const router = useRouter();
-  const userId = useMemo(() => {
-    if (typeof window === "undefined") return null;
-    return localStorage.getItem(StorageKey.UserId);
-  }, []);
 
   const {
     mutate: _createUser,
@@ -61,18 +58,20 @@ const Done = () => {
 
   const fcmToken = useAtomValue(FCMTokenAtom);
 
+  const user = useUser();
+
   useEffect(() => {
     if (status !== "idle") return;
     const { isAgreedSummaryAlert, ...restSurvey } = survey;
-    if (!userId) {
+    if (!user?.id) {
       _createUser({ survey: restSurvey });
     } else {
-      _updateSurvey({ survey: restSurvey, userId });
+      _updateSurvey({ survey: restSurvey, userId: String(user.id) });
     }
-  }, [status, survey, userId]);
+  }, [status, survey, user?.id]);
 
   return (
-    <main className="min-h-screen w-full flex items-center justify-center relative">
+    <>
       <DotLottiePlayer
         src={particleData}
         autoplay
@@ -81,7 +80,7 @@ const Done = () => {
       />
 
       <FadeTitle text={titleText} />
-    </main>
+    </>
   );
 };
 

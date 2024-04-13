@@ -9,13 +9,14 @@ import { userAtom } from "@/atom/user";
 const AuthGuard = ({ children }: { children: ReactNode }) => {
   const setUser = useSetAtom(userAtom);
 
+  const userId =
+    typeof window === "undefined"
+      ? null
+      : localStorage.getItem(StorageKey.UserId);
+
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const userId = localStorage.getItem(StorageKey.UserId);
-
     setUser({ id: userId ? parseInt(userId) : null });
-  }, []);
+  }, [userId]);
 
   return <>{children}</>;
 };

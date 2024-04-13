@@ -5,7 +5,8 @@ export const SURVEY_INITIAL_STATE = {
   alertBeforeRain: 0,
   timePeriods: [],
   summaryAlertTime: 0,
-  isAgreedSummaryAlert: null
+  isAgreedSummaryAlert: null,
+  step: 0
 };
 const _surveyAtom = atom<SurveyState>(SURVEY_INITIAL_STATE);
 
