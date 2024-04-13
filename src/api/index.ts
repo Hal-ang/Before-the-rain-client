@@ -46,17 +46,23 @@ export const getTodayWeahterBanner = async (lat?: number, lon?: number) => {
   Sentry.captureMessage(
     `배너 API 호출 ${`/weathers/today/banner?lat=${lat}&lon=${lon}`}`
   );
+  if (!lat || !lon) return;
   return fetchAPI<TodayBannerResponse>(
     `/weathers/today/banner?lat=${lat}&lon=${lon}`
   );
 };
 
 export const getTodaySummary = async (lat?: number, lon?: number) => {
+  Sentry.captureMessage(
+    `getTodaySummary API 호출 ${`/weathers/today/banner?lat=${lat}&lon=${lon}`}`
+  );
+  if (!lat || !lon) return;
   return fetchAPI<TodaySummaryResponse>(
     `/weathers/today/summary?lat=${lat}&lon=${lon}`
   );
 };
 export const getHourlyWeathers = async (lat?: number, lon?: number) => {
+  if (!lat || !lon) return;
   return fetchAPI<HourlyWeatherResponse>(
     `/weathers/hourly?lat=${lat}&lon=${lon}&offset=24`
   );
