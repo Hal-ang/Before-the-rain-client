@@ -25,7 +25,8 @@ const useWebviewUserCoords = () => {
       const MS_OF_10_MINUTE = 1000 * 60 * 10;
       const now = new Date().getTime();
       const alreadyUpdatedCoords =
-        now - (user?.coordinates?.updatedAt ?? 0) < MS_OF_10_MINUTE;
+        now - (user?.coordinates?.updatedAt ?? MS_OF_10_MINUTE + 1) <
+        MS_OF_10_MINUTE;
       if (alreadyUpdatedCoords) return;
 
       setUser({ coordinates: { ...coordinates, updatedAt: now } });
