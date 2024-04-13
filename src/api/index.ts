@@ -20,11 +20,15 @@ export const fetchAPI = async <T>(
 ): Promise<T> => {
   const url = `${API_BASE_URL}${endpoint}`;
   try {
+    const userId =
+      typeof window === "undefined"
+        ? ""
+        : localStorage.getItem(StorageKey.UserId);
     const response = await fetch(url, {
       ...options,
       headers: {
         ...options.headers,
-        Authorization: localStorage.getItem(StorageKey.UserId) || "",
+        Authorization: userId || "",
         "Content-Type": "application/json"
       }
     });
