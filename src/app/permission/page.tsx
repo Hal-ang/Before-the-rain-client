@@ -1,26 +1,30 @@
 "use client";
 
 import React, { useMemo } from "react";
-import {
-  enabledNotificationPermissionAtom,
-  userCoordinatesAtom
-} from "@/atom/webview";
 
 import BackHeader from "@/components/header/BackHeader";
 import { CardLayout } from "@/components/layout/card";
 import Knowhow from "@/components/content/Knowhow";
 import Switch from "@/components/Switch";
+import { enabledNotificationPermissionAtom } from "@/atom/webview";
 import { useAtomValue } from "jotai";
+import useUser from "@/hooks/useUser";
 
 const Permission = () => {
   const enabledNotificationPermission = useAtomValue(
     enabledNotificationPermissionAtom
   );
-  const { lat, lon, updatedAt } = useAtomValue(userCoordinatesAtom);
+
+  const user = useUser();
 
   const enabledLocationPermission = useMemo(
-    () => !!(lat && lon && updatedAt),
-    [lat, lon, updatedAt]
+    () =>
+      !!(
+        user?.coordinates?.lat &&
+        user?.coordinates?.lon &&
+        user?.coordinates?.updatedAt
+      ),
+    [user?.coordinates]
   );
 
   const permissions = useMemo(

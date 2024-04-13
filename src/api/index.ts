@@ -36,18 +36,18 @@ export const fetchAPI = async <T>(
   }
 };
 
-export const getTodayWeahterBanner = async (lat: number, lon: number) => {
+export const getTodayWeahterBanner = async (lat?: number, lon?: number) => {
   return fetchAPI<TodayBannerResponse>(
     `/weathers/today/banner?lat=${lat}&lon=${lon}`
   );
 };
 
-export const getTodaySummary = async (lat: number, lon: number) => {
+export const getTodaySummary = async (lat?: number, lon?: number) => {
   fetchAPI<TodaySummaryResponse>(
     `/weathers/today/summary?lat=${lat}&lon=${lon}`
   );
 };
-export const getHourlyWeathers = async (lat: number, lon: number) => {
+export const getHourlyWeathers = async (lat?: number, lon?: number) => {
   return fetchAPI<HourlyWeatherResponse>(
     `/weathers/hourly?lat=${lat}&lon=${lon}&offset=24`
   );

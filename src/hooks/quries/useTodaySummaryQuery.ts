@@ -1,16 +1,15 @@
 "use client";
 
 import { getTodaySummary } from "@/api";
-import { useAtomValue } from "jotai";
 import { useQuery } from "@tanstack/react-query";
-import { userCoordinatesAtom } from "@/atom/webview";
+import useUser from "../useUser";
 
 const useTodaySummaryQuery = () => {
-  const { lat, lon } = useAtomValue(userCoordinatesAtom);
+  const { coordinates } = useUser();
 
   return useQuery({
-    queryKey: ["todaySummary", lat, lon],
-    queryFn: () => getTodaySummary(lat, lon)
+    queryKey: ["todaySummary", coordinates?.updatedAt],
+    queryFn: () => getTodaySummary(coordinates?.lat, coordinates?.lon)
   });
 };
 
