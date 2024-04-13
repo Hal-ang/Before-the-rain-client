@@ -42,8 +42,7 @@ const Done = () => {
     isPending: isUpdating,
     isSuccess: isUpdatingSuccess
   } = useMutation({
-    mutationFn: (params: { survey: Survey; userId: string }) =>
-      updateSurvey(params.survey, params.userId),
+    mutationFn: ({ survey }: { survey: Survey }) => updateSurvey(survey),
     onSuccess() {
       router.push("/content");
     }
@@ -66,7 +65,7 @@ const Done = () => {
     if (!user?.id) {
       _createUser({ survey: restSurvey });
     } else {
-      _updateSurvey({ survey: restSurvey, userId: String(user.id) });
+      _updateSurvey({ survey: restSurvey });
     }
   }, [status, survey, user?.id]);
 
