@@ -3,6 +3,7 @@ import "./globals.css";
 import MSW from "@/components/\bmsw";
 import type { Metadata } from "next";
 import Providers from "../components/providers";
+import StyledComponentsRegistry from "../../lib/registry";
 import Webview from "@/components/Webview";
 import localFont from "next/font/local";
 
@@ -41,15 +42,17 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${myFont.className} bg-black`}>
-        <Providers>
-          {process.env.NEXT_PUBLIC_API_MOCKING === "enabled" ? (
-            <MSW>
+        <StyledComponentsRegistry>
+          <Providers>
+            {process.env.NEXT_PUBLIC_API_MOCKING === "enabled" ? (
+              <MSW>
+                <Webview>{children}</Webview>
+              </MSW>
+            ) : (
               <Webview>{children}</Webview>
-            </MSW>
-          ) : (
-            <Webview>{children}</Webview>
-          )}
-        </Providers>
+            )}
+          </Providers>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

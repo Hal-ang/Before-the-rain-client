@@ -30,6 +30,9 @@ const nextConfig = {
   },
   images: {
     domains: ["d1j05o5l6xx0ft.cloudfront.net", "openweathermap.org"]
+  },
+  compiler: {
+    styledComponents: true
   }
 };
 
