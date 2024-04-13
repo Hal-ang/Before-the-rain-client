@@ -43,7 +43,7 @@ export const getTodayWeahterBanner = async (lat?: number, lon?: number) => {
 };
 
 export const getTodaySummary = async (lat?: number, lon?: number) => {
-  fetchAPI<TodaySummaryResponse>(
+  return fetchAPI<TodaySummaryResponse>(
     `/weathers/today/summary?lat=${lat}&lon=${lon}`
   );
 };

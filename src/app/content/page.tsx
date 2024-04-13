@@ -1,5 +1,3 @@
-"use client";
-
 import React, { Suspense } from "react";
 
 import { CardLayout } from "@/components/layout/card";
@@ -21,7 +19,9 @@ const Content = () => {
           <TodayBanner />
         </Suspense>
         <Knowhow text="강수확률은 과거에 비슷한 날씨가 100번 있었다면 확률만큼 비가 왔다는 뜻이에요" />
-        <TodaySummary />
+        <Suspense fallback={<CardLayout state="dark">loading</CardLayout>}>
+          <TodaySummary />
+        </Suspense>
         <div className="mt-21pxr">
           <p className="font-medium text-15pxr">👕🩳</p>
           <HourlyWeathers />
