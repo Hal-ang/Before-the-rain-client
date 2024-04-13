@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import { colors } from "@/styles/colors";
+import { colors } from "./src/styles/colors";
 
 const { range } = require("lodash");
 
