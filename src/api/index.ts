@@ -53,7 +53,7 @@ export const getHourlyWeathers = async (lat?: number, lon?: number) => {
   );
 };
 
-export const createUser = async (survey: Survey, fcmToken: string) => {
+export const createUser = async (survey: Survey, fcmToken?: string) => {
   const data = await fetchAPI<UserReponse>("/users", {
     method: "POST",
     body: JSON.stringify({
