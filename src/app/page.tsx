@@ -1,4 +1,3 @@
-import AuthGuard from "@/components/auth/AuthGuard";
 import FadeTitle from "@/components/FadeTitle";
 import Flex from "@/components/Flex";
 import RouterGuard from "@/components/auth/RouterGuard";

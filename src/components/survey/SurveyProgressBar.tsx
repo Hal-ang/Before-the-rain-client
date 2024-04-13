@@ -2,12 +2,9 @@ import React, { useMemo } from "react";
 
 import ProgressBar from "../ProgressBar";
 import { SURVEY_STEP } from "@/constants/survey";
-import { surveyAtom } from "@/atom/survey";
-import { useAtomValue } from "jotai";
+import { SurveyState } from "@/types/survey";
 
-const SurveyProgressBar = () => {
-  const survey = useAtomValue(surveyAtom);
-
+const SurveyProgressBar = ({ survey }: { survey: SurveyState }) => {
   const percent = useMemo(() => {
     const stepValue = 100 / 3;
 

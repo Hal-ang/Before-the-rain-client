@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import AlertBefore from "./AlertBefore";
 import AlertSummaryAgreed from "./AlertSummaryAgreed";
@@ -12,9 +12,8 @@ import Onboarding from "./Onboarding";
 import { SURVEY_STEP } from "@/constants/survey";
 import SurveyProgressBar from "./SurveyProgressBar";
 import { SurveyState } from "@/types/survey";
+import { Survey as SurveyType } from "@/api/type";
 import TimePeriods from "./TimePeriods";
-import { surveyAtom } from "@/atom/survey";
-import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import useUser from "@/hooks/useUser";
 
@@ -22,59 +21,81 @@ export interface SurveyStepProps {
   onNext: () => void;
 }
 
-const Survey = ({ onSubmit }: { onSubmit: () => void }) => {
+const Survey = ({ onSubmit }: { onSubmit: (survey: SurveyType) => void }) => {
   const user = useUser();
-  const [{ step, ...survey }, setSurvey] = useAtom(surveyAtom);
+
+  const [{ step, ...surveyValues }, setSurveyValues] = useState<SurveyState>({
+    alertBeforeRain: 0,
+    timePeriods: [],
+    summaryAlertTime: 0,
+    isAgreedSummaryAlert: null,
+    step: 0
+  });
 
   const handleOnboardingNext = useCallback(() => {
-    setSurvey({ step: SURVEY_STEP.AlertBefore });
+    setSurveyValues((prev) => ({ ...prev, step: SURVEY_STEP.AlertBefore }));
   }, []);
 
   const handleAlertBeforeChange = useCallback(
     (alertBeforeRain: SurveyState["alertBeforeRain"]) => {
-      setSurvey({ alertBeforeRain, step: SURVEY_STEP.TimePeriods });
+      setSurveyValues((prev) => ({
+        ...prev,
+        alertBeforeRain,
+        step: SURVEY_STEP.TimePeriods
+      }));
     },
     []
   );
 
   const handleTimePeriodsChange = useCallback(
     (timePeriods: SurveyState["timePeriods"]) => {
-      setSurvey({ timePeriods, step: SURVEY_STEP.AlertSummaryAgreed });
+      setSurveyValues((prev) => ({
+        ...prev,
+        timePeriods,
+        step: SURVEY_STEP.AlertSummaryAgreed
+      }));
     },
     []
   );
 
   const handleSummaryAgreedChange = useCallback(
     (isAgreedSummaryAlert: SurveyState["isAgreedSummaryAlert"]) => {
-      setSurvey({
+      setSurveyValues((prev) => ({
+        ...prev,
         isAgreedSummaryAlert,
         step: isAgreedSummaryAlert
           ? SURVEY_STEP.AlertSummarySelect
           : SURVEY_STEP.Done
-      });
+      }));
     },
     []
   );
 
   const handleSummarySelectChange = useCallback(
     (summaryAlertTime: SurveyState["summaryAlertTime"]) => {
-      setSurvey({ summaryAlertTime, step: SURVEY_STEP.Done });
+      setSurveyValues((prev) => ({
+        ...prev,
+        summaryAlertTime,
+        step: SURVEY_STEP.Done
+      }));
     },
     []
   );
 
   useEffect(() => {
     if (step === SURVEY_STEP.Done) {
-      onSubmit();
-    }
-  }, [step]);
-  const router = useRouter();
+      const { isAgreedSummaryAlert, ...pureSurvey } = surveyValues;
 
+      onSubmit(pureSurvey);
+    }
+  }, [step, surveyValues]);
+
+  const router = useRouter();
   const handleBackPress = useCallback(() => {
     if (step === SURVEY_STEP.AlertBefore) {
       router.back();
     } else {
-      setSurvey({ step: step - 1 });
+      setSurveyValues((prev) => ({ ...prev, step: prev.step - 1 }));
     }
   }, [step]);
 
@@ -86,19 +107,19 @@ const Survey = ({ onSubmit }: { onSubmit: () => void }) => {
         <>
           <BackHeader onPressBack={handleBackPress} />
           <section className="w-full px-12pxr">
-            <SurveyProgressBar />
+            <SurveyProgressBar survey={{ ...surveyValues, step }} />
           </section>
 
           {step === SURVEY_STEP.AlertBefore && (
             <AlertBefore
               onNext={handleAlertBeforeChange}
-              defaultValue={survey.alertBeforeRain}
+              defaultValue={surveyValues.alertBeforeRain}
             />
           )}
           {step === SURVEY_STEP.TimePeriods && (
             <TimePeriods
               onNext={handleTimePeriodsChange}
-              defaultValue={survey.timePeriods}
+              defaultValue={surveyValues.timePeriods}
             />
           )}
           {step === SURVEY_STEP.AlertSummaryAgreed && (
@@ -107,10 +128,9 @@ const Survey = ({ onSubmit }: { onSubmit: () => void }) => {
           {step === SURVEY_STEP.AlertSummarySelect && (
             <AlertSummarySelect
               onNext={handleSummarySelectChange}
-              defaultValue={survey.summaryAlertTime}
+              defaultValue={surveyValues.summaryAlertTime}
             />
           )}
-          {step === SURVEY_STEP.Done && <Done />}
         </>
       )}
     </Flex>
