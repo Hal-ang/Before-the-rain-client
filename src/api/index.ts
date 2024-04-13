@@ -9,15 +9,15 @@ import {
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { StorageKey } from "@/constants/storage";
 
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_MOCKING === "enabled"
-    ? process.env.NEXT_PUBLIC_MOCKING_API_URL
-    : process.env.NEXT_PUBLIC_API_URL;
-
 export const fetchAPI = async <T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> => {
+  const API_BASE_URL =
+    process.env.NEXT_PUBLIC_API_MOCKING === "enabled"
+      ? process.env.NEXT_PUBLIC_MOCKING_API_URL
+      : process.env.NEXT_PUBLIC_API_URL;
+
   const url = `${API_BASE_URL}${endpoint}`;
   try {
     const userId =
