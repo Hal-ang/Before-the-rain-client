@@ -1,14 +1,17 @@
 "use client";
 
+import {
+  PAGE_TRANSITION_DURATION,
+  TRANSITION_DURATIN
+} from "@/constants/duration";
 import { useEffect, useState } from "react";
 
-import CheckBox from "../button/CheckBox";
-import FadeTitle from "../FadeTitle";
-import FixedBottomBar from "../bottombar/FixedBottomBar";
-import { PAGE_TRANSITION_DURATION } from "@/constants/duration";
+import CheckBox from "../../button/CheckBox";
+import FadeTitle from "../../FadeTitle";
+import FixedBottomBar from "../../bottombar/FixedBottomBar";
 import { PeriodValueType } from "@/types/survey";
 import { TIME_PERIODS } from "@/constants/survey";
-import TransitionTightSection from "../layout/TransitionTightSection";
+import TransitionTightSection from "../../layout/TransitionTightSection";
 
 const TimePeriods = ({
   onNext,
@@ -38,7 +41,7 @@ const TimePeriods = ({
 
     const timeoutID = setTimeout(() => {
       setVisibleOptions(true);
-    }, 500);
+    }, TRANSITION_DURATIN);
 
     return () => {
       clearTimeout(timeoutID);

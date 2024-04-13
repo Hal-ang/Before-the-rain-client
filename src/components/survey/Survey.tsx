@@ -2,9 +2,9 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 
-import AlertBefore from "./AlertBefore";
-import AlertSummaryAgreed from "./AlertSummaryAgreed";
-import AlertSummarySelect from "./AlertSummarySelect";
+import AlertBefore from "./step/AlertBefore";
+import AlertSummaryAgreed from "./step/AlertSummaryAgreed";
+import AlertSummarySelect from "./step/AlertSummarySelect";
 import BackHeader from "../header/BackHeader";
 import Done from "./Done";
 import Flex from "../Flex";
@@ -13,7 +13,7 @@ import { SURVEY_STEP } from "@/constants/survey";
 import SurveyProgressBar from "./SurveyProgressBar";
 import { SurveyState } from "@/types/survey";
 import { Survey as SurveyType } from "@/api/type";
-import TimePeriods from "./TimePeriods";
+import TimePeriods from "./step/TimePeriods";
 import { useRouter } from "next/navigation";
 import useUser from "@/hooks/useUser";
 

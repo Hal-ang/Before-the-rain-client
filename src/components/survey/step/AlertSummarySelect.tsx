@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import FadeTitle from "../FadeTitle";
-import FixedBottomBar from "../bottombar/FixedBottomBar";
-import LargeInput from "../input/LargeInput";
+import FadeTitle from "../../FadeTitle";
+import FixedBottomBar from "../../bottombar/FixedBottomBar";
+import LargeInput from "../../input/LargeInput";
 import { SurveyState } from "@/types/survey";
-import TransitionTightSection from "../layout/TransitionTightSection";
+import { TRANSITION_DURATIN } from "@/constants/duration";
+import TransitionTightSection from "../../layout/TransitionTightSection";
 import useFocused from "@/hooks/useFocused";
 
 const AlertSummarySelect = ({
@@ -26,7 +27,7 @@ const AlertSummarySelect = ({
 
     const timeoutID = setTimeout(() => {
       setShouldTransition(true);
-    }, 500);
+    }, TRANSITION_DURATIN);
     return () => {
       clearTimeout(timeoutID);
     };

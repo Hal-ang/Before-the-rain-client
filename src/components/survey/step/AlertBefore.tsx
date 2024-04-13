@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import FadeTitle from "../FadeTitle";
-import FixedBottomBar from "../bottombar/FixedBottomBar";
+import FadeTitle from "../../FadeTitle";
+import FixedBottomBar from "../../bottombar/FixedBottomBar";
 import { SurveyState } from "@/types/survey";
 import { TRANSITION_DURATIN } from "@/constants/duration";
-import TimeInput from "../input/TimeInput";
-import TransitionTightSection from "../layout/TransitionTightSection";
+import TimeInput from "../../input/TimeInput";
+import TransitionTightSection from "../../layout/TransitionTightSection";
 import useFocused from "@/hooks/useFocused";
 
 const AlertBefore = ({
@@ -23,11 +23,6 @@ const AlertBefore = ({
   const { isFocused: isHourFocused, bind: hourBind } = useFocused();
   const { isFocused: isMinuteFocused, bind: minuteBind } = useFocused();
 
-  const isFocused = useMemo(
-    () => isHourFocused || isMinuteFocused,
-    [isHourFocused, isMinuteFocused]
-  );
-
   const [shouldTransition, setShouldTransition] = useState(false);
 
   useEffect(() => {
@@ -40,6 +35,11 @@ const AlertBefore = ({
       clearTimeout(timeoutID);
     };
   }, []);
+
+  const isFocused = useMemo(
+    () => isHourFocused || isMinuteFocused,
+    [isHourFocused, isMinuteFocused]
+  );
 
   useEffect(() => {
     setShouldTransition(isFocused);

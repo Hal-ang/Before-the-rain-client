@@ -1,7 +1,7 @@
-import FadeTitle from "../FadeTitle";
-import { LinearButton } from "../button/LinearButton";
+import FadeTitle from "../../FadeTitle";
+import { LinearButton } from "../../button/LinearButton";
 import React from "react";
-import TransitionTightSection from "../layout/TransitionTightSection";
+import TransitionTightSection from "../../layout/TransitionTightSection";
 
 const AlertSummaryAgreed = ({
   onNext
