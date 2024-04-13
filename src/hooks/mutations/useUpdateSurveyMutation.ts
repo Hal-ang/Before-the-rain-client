@@ -4,8 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 
 const useUpdateSurveyMutation = () => {
   return useMutation({
-    mutationFn: ({ survey, userId }: { survey: Survey; userId: string }) =>
-      updateSurvey(survey, userId)
+    mutationFn: ({ survey }: { survey: Survey }) => updateSurvey(survey)
   });
 };
 

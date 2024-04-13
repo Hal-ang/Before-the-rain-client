@@ -17,3 +17,11 @@ export const SURVEY_STEPS = [
   "alert-summary/agreed",
   "time-period"
 ];
+
+export enum SURVEY_STEP {
+  AlertBefore,
+  TimePeriods,
+  AlertSummaryAgreed,
+  AlertSummarySelect,
+  Done
+}
