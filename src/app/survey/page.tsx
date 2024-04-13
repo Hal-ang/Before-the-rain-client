@@ -29,6 +29,17 @@ const SurveyPage = () => {
         localStorage.setItem(StorageKey.UserId, `${data.id}`);
       }
       router.push("/content");
+    },
+    onError() {
+      if (typeof window === "undefined") return;
+
+      if (!window.navigator.userAgent.includes("iPhone")) {
+        if (window.confirm("IOS 앱을 통해 이용해주세요")) {
+          window.open(
+            "https://apps.apple.com/kr/app/%EB%B9%84%EA%B0%80-%EC%98%A4%EA%B8%B0-%EC%A0%84%EC%97%90/id6479691792"
+          );
+        }
+      }
     }
   });
 

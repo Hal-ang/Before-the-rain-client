@@ -6,7 +6,6 @@ import AlertBefore from "./step/AlertBefore";
 import AlertSummaryAgreed from "./step/AlertSummaryAgreed";
 import AlertSummarySelect from "./step/AlertSummarySelect";
 import BackHeader from "../header/BackHeader";
-import Done from "./Done";
 import Flex from "../Flex";
 import Onboarding from "./Onboarding";
 import { SURVEY_STEP } from "@/constants/survey";

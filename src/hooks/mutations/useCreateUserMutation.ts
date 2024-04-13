@@ -5,16 +5,19 @@ import { useMutation } from "@tanstack/react-query";
 import useUser from "../useUser";
 
 const useCreateUserMutation = ({
-  onSuccess
+  onSuccess,
+  onError
 }: {
   onSuccess: (data: UserReponse) => void;
+  onError: () => void;
 }) => {
   const { fcmToken } = useUser();
 
   return useMutation({
     mutationFn: ({ survey }: { survey: Survey }) =>
       createUser(survey, fcmToken ?? undefined),
-    onSuccess
+    onSuccess,
+    onError
   });
 };
 

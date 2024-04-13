@@ -2,9 +2,8 @@ import { atom } from "jotai";
 
 export const INITIAL_USER = {
   coordinates: {
-    // TODO : 임수 수정
-    lat: 37.59996944,
-    lon: 126.9312417,
+    lat: 0,
+    lon: 0,
     updatedAt: 0
   },
   id: null,
