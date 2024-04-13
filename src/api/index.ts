@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/react";
+
 import {
   HourlyWeatherResponse,
   Survey,
@@ -41,6 +43,9 @@ export const fetchAPI = async <T>(
 };
 
 export const getTodayWeahterBanner = async (lat?: number, lon?: number) => {
+  Sentry.captureMessage(
+    `배너 API 호출 ${`/weathers/today/banner?lat=${lat}&lon=${lon}`}`
+  );
   return fetchAPI<TodayBannerResponse>(
     `/weathers/today/banner?lat=${lat}&lon=${lon}`
   );
