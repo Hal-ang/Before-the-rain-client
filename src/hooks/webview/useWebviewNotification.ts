@@ -1,13 +1,11 @@
 import { useEffect, useLayoutEffect } from "react";
 
 import { BooleanStringParam } from "../../../global";
-import { enabledNotificationPermissionAtom } from "../../atom/webview";
 import { useSetAtom } from "jotai";
+import { userAtom } from "@/atom/user";
 
 const useWebviewNotification = () => {
-  const setEnabledNotificationPermission = useSetAtom(
-    enabledNotificationPermissionAtom
-  );
+  const setUser = useSetAtom(userAtom);
 
   useLayoutEffect(() => {
     // 브릿지 수신 함수
@@ -16,7 +14,7 @@ const useWebviewNotification = () => {
       enabled: BooleanStringParam
     ) => {
       console.log(`Notification permission enabled: ${enabled}`);
-      setEnabledNotificationPermission(enabled === "true");
+      setUser({ enabledNotificationPermission: enabled === "true" });
     };
   }, []);
 

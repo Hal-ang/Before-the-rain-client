@@ -7,7 +7,9 @@ export const INITIAL_USER = {
     lon: 126.9312417,
     updatedAt: 0
   },
-  id: null
+  id: null,
+  fcmToken: null,
+  enabledNotificationPermission: false
 };
 
 interface UserAtom {
@@ -17,6 +19,8 @@ interface UserAtom {
     updatedAt: number;
   };
   id: number | null;
+  fcmToken: string | null;
+  enabledNotificationPermission: boolean;
 }
 const _userAtom = atom<UserAtom>(INITIAL_USER);
 

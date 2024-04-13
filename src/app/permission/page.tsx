@@ -6,15 +6,9 @@ import BackHeader from "@/components/header/BackHeader";
 import { CardLayout } from "@/components/layout/card";
 import Knowhow from "@/components/content/Knowhow";
 import Switch from "@/components/Switch";
-import { enabledNotificationPermissionAtom } from "@/atom/webview";
-import { useAtomValue } from "jotai";
 import useUser from "@/hooks/useUser";
 
 const Permission = () => {
-  const enabledNotificationPermission = useAtomValue(
-    enabledNotificationPermissionAtom
-  );
-
   const user = useUser();
 
   const enabledLocationPermission = useMemo(
@@ -47,10 +41,10 @@ const Permission = () => {
             "requestNotificationPermission"
           );
         },
-        isAgreed: enabledNotificationPermission
+        isAgreed: user.enabledNotificationPermission
       }
     ],
-    [enabledNotificationPermission, enabledLocationPermission]
+    [user.enabledNotificationPermission, enabledLocationPermission]
   );
 
   return (

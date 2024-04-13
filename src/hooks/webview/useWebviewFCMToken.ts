@@ -1,16 +1,16 @@
 import { useEffect, useLayoutEffect } from "react";
 
-import { FCMTokenAtom } from "@/atom/webview";
 import { useSetAtom } from "jotai";
+import { userAtom } from "@/atom/user";
 
 const useWebviewFCMToken = () => {
-  const setFCMToken = useSetAtom(FCMTokenAtom);
+  const setUser = useSetAtom(userAtom);
 
   useLayoutEffect(() => {
     // 브릿지 수신 함수
     window.updateFCMToken = (token: string) => {
       console.log(`FCM Token: ${token}`);
-      setFCMToken(token);
+      setUser({ fcmToken: token });
     };
   }, []);
 
