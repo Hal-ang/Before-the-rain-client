@@ -22,15 +22,15 @@ export const fetchAPI = async <T>(
 
   const url = `${API_BASE_URL}${endpoint}`;
   try {
-    const userId =
-      typeof window === "undefined"
-        ? ""
-        : localStorage.getItem(StorageKey.UserId);
+    // const userId =
+    //   typeof window === "undefined"
+    //     ? ""
+    //     : localStorage.getItem(StorageKey.UserId);
     const response = await fetch(url, {
       ...options,
       headers: {
         ...options.headers,
-        Authorization: userId || "",
+        // Authorization: userId || "",
         "Content-Type": "application/json"
       }
     });

@@ -13,7 +13,7 @@ const Content = () => {
     <main className="min-h-screen w-full flex flex-col ">
       <Header text="비가 오기 전에" enableSticky />
       <section className="grow flex flex-col px-20pxr pt-7pxr">
-        <Suspense
+        {/* <Suspense
           fallback={<CardLayout state="dark-outline">loading</CardLayout>}
         >
           <TodayBanner />
@@ -25,7 +25,7 @@ const Content = () => {
         <div className="mt-21pxr">
           <p className="font-medium text-15pxr">👕🩳</p>
           <HourlyWeathers />
-        </div>
+        </div> */}
         <div className="mt-22pxr">
           <Link
             href="/survey"

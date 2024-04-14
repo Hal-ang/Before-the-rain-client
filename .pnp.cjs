@@ -31,6 +31,7 @@ const RAW_RUNTIME_STATE =
           ["@next/bundle-analyzer", "npm:14.2.1"],\
           ["@sentry/nextjs", "virtual:67bccc7d0bcfa1230f52b04f252953235f3247e8df364142a4b7724e7369b822323dc3148cf3825512a8c0b70e04e7501cbd67f5ac8193999d7bc7a9f219cccb#npm:7.110.0"],\
           ["@sentry/react", "virtual:67bccc7d0bcfa1230f52b04f252953235f3247e8df364142a4b7724e7369b822323dc3148cf3825512a8c0b70e04e7501cbd67f5ac8193999d7bc7a9f219cccb#npm:7.110.0"],\
+          ["@sentry/utils", "npm:7.110.0"],\
           ["@storybook/addon-essentials", "virtual:67bccc7d0bcfa1230f52b04f252953235f3247e8df364142a4b7724e7369b822323dc3148cf3825512a8c0b70e04e7501cbd67f5ac8193999d7bc7a9f219cccb#npm:7.6.17"],\
           ["@storybook/addon-interactions", "npm:7.6.17"],\
           ["@storybook/addon-links", "virtual:67bccc7d0bcfa1230f52b04f252953235f3247e8df364142a4b7724e7369b822323dc3148cf3825512a8c0b70e04e7501cbd67f5ac8193999d7bc7a9f219cccb#npm:7.6.17"],\
@@ -11368,6 +11369,7 @@ const RAW_RUNTIME_STATE =
           ["@next/bundle-analyzer", "npm:14.2.1"],\
           ["@sentry/nextjs", "virtual:67bccc7d0bcfa1230f52b04f252953235f3247e8df364142a4b7724e7369b822323dc3148cf3825512a8c0b70e04e7501cbd67f5ac8193999d7bc7a9f219cccb#npm:7.110.0"],\
           ["@sentry/react", "virtual:67bccc7d0bcfa1230f52b04f252953235f3247e8df364142a4b7724e7369b822323dc3148cf3825512a8c0b70e04e7501cbd67f5ac8193999d7bc7a9f219cccb#npm:7.110.0"],\
+          ["@sentry/utils", "npm:7.110.0"],\
           ["@storybook/addon-essentials", "virtual:67bccc7d0bcfa1230f52b04f252953235f3247e8df364142a4b7724e7369b822323dc3148cf3825512a8c0b70e04e7501cbd67f5ac8193999d7bc7a9f219cccb#npm:7.6.17"],\
           ["@storybook/addon-interactions", "npm:7.6.17"],\
           ["@storybook/addon-links", "virtual:67bccc7d0bcfa1230f52b04f252953235f3247e8df364142a4b7724e7369b822323dc3148cf3825512a8c0b70e04e7501cbd67f5ac8193999d7bc7a9f219cccb#npm:7.6.17"],\
