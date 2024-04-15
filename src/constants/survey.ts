@@ -19,6 +19,7 @@ export const SURVEY_STEPS = [
 ];
 
 export enum SURVEY_STEP {
+  Onboarding,
   AlertBefore,
   TimePeriods,
   AlertSummaryAgreed,

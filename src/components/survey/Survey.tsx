@@ -23,13 +23,15 @@ export interface SurveyStepProps {
 const Survey = ({ onSubmit }: { onSubmit: (survey: SurveyType) => void }) => {
   const user = useUser();
 
-  const [{ step, ...surveyValues }, setSurveyValues] = useState<SurveyState>({
-    alertBeforeRain: 0,
-    timePeriods: [],
-    summaryAlertTime: 0,
-    isAgreedSummaryAlert: null,
-    step: 0
-  });
+  const [{ step, ...surveyValues }, setSurveyValues] = useState<SurveyState>(
+    () => ({
+      alertBeforeRain: 0,
+      timePeriods: [],
+      summaryAlertTime: 0,
+      isAgreedSummaryAlert: null,
+      step: user?.id === null ? SURVEY_STEP.Onboarding : SURVEY_STEP.AlertBefore
+    })
+  );
 
   const handleOnboardingNext = useCallback(() => {
     setSurveyValues((prev) => ({ ...prev, step: SURVEY_STEP.AlertBefore }));
@@ -100,7 +102,7 @@ const Survey = ({ onSubmit }: { onSubmit: (survey: SurveyType) => void }) => {
 
   return (
     <Flex as="main" direction="column" className="min-h-screen w-full">
-      {user?.id === null ? (
+      {step === SURVEY_STEP.Onboarding ? (
         <Onboarding onNext={handleOnboardingNext} />
       ) : (
         <>
