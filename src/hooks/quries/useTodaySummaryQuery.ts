@@ -1,13 +1,14 @@
 "use client";
 
 import { getTodaySummary } from "@/api";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import useUser from "../useUser";
 
 const useTodaySummaryQuery = () => {
   const { coordinates } = useUser();
 
-  return useSuspenseQuery({
+  return useQuery({
+    enabled: !!(coordinates?.lat && coordinates?.lon),
     queryKey: ["todaySummary", coordinates?.lat, coordinates?.lon],
     queryFn: () => getTodaySummary(coordinates?.lat, coordinates?.lon)
   });

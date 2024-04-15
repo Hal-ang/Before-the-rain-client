@@ -8,9 +8,6 @@ import {
   UserReponse
 } from "./type";
 
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
-import { StorageKey } from "@/constants/storage";
-
 export const fetchAPI = async <T>(
   endpoint: string,
   options: RequestInit = {}
@@ -22,15 +19,10 @@ export const fetchAPI = async <T>(
 
   const url = `${API_BASE_URL}${endpoint}`;
   try {
-    // const userId =
-    //   typeof window === "undefined"
-    //     ? ""
-    //     : localStorage.getItem(StorageKey.UserId);
     const response = await fetch(url, {
       ...options,
       headers: {
         ...options.headers,
-        // Authorization: userId || "",
         "Content-Type": "application/json"
       }
     });
@@ -80,18 +72,21 @@ export const createUser = async (survey: Survey, fcmToken?: string) => {
   return data;
 };
 
-export const updateSurvey = async (survey: Survey) => {
+export const updateSurvey = async (survey: Survey, userId: string) => {
   return fetchAPI<Survey>("/surveys", {
     method: "PUT",
-    body: JSON.stringify({ survey })
+    body: JSON.stringify({ survey }),
+    headers: {
+      Authorization: userId
+    }
   });
 };
 
-export const updateUserToken = async (
-  fcmToken: RequestCookie | string,
-  userId: RequestCookie | string
-) =>
+export const updateUserToken = async (fcmToken: string, userId: string) =>
   fetchAPI<UserReponse>("/users", {
     method: "PATCH",
-    body: JSON.stringify({ fcmToken })
+    body: JSON.stringify({ fcmToken }),
+    headers: {
+      Authorization: userId
+    }
   });

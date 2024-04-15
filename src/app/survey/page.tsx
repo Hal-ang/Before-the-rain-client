@@ -12,9 +12,12 @@ import { updateSurvey } from "@/api";
 import useCreateUserMutation from "@/hooks/mutations/useCreateUserMutation";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useSetAtom } from "jotai";
 import useUser from "@/hooks/useUser";
+import { userAtom } from "@/atom/user";
 
 const SurveyPage = () => {
+  const setUser = useSetAtom(userAtom);
   const user = useUser();
   const router = useRouter();
 
@@ -26,6 +29,7 @@ const SurveyPage = () => {
   } = useCreateUserMutation({
     onSuccess(data) {
       if (data.id) {
+        setUser({ id: data.id });
         localStorage.setItem(StorageKey.UserId, `${data.id}`);
       }
       router.push("/content");
@@ -48,7 +52,8 @@ const SurveyPage = () => {
     isPending: isUpdating,
     isError: isUpdatingError
   } = useMutation({
-    mutationFn: ({ survey }: { survey: SurveyType }) => updateSurvey(survey),
+    mutationFn: ({ survey }: { survey: SurveyType }) =>
+      updateSurvey(survey, String(user.id)),
     onSuccess() {
       router.push("/content");
     }

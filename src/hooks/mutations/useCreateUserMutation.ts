@@ -15,7 +15,7 @@ const useCreateUserMutation = ({
 
   return useMutation({
     mutationFn: ({ survey }: { survey: Survey }) =>
-      createUser(survey, fcmToken ?? undefined),
+      createUser(survey, fcmToken ?? ""),
     onSuccess,
     onError
   });
