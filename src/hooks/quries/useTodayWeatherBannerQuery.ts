@@ -8,7 +8,6 @@ const useTodayWeatherBannerQuery = () => {
   const { coordinates } = useUser();
 
   return useQuery({
-    enabled: !!(coordinates?.lat && coordinates?.lon),
     queryKey: ["weatherBanner", coordinates?.lat, coordinates?.lon],
     queryFn: () => getTodayWeahterBanner(coordinates?.lat, coordinates?.lon)
   });
