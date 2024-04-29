@@ -34,7 +34,7 @@ const useWebviewUserCoords = () => {
 
       setUser({ coordinates: { ...coordinates, updatedAt: now } });
     },
-    [user]
+    [user?.coordinates]
   );
 };
 
