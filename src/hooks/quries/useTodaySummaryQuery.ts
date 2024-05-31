@@ -8,7 +8,7 @@ const useTodaySummaryQuery = () => {
   const { coordinates } = useUser();
 
   return useQuery({
-    queryKey: ["todaySummary", coordinates?.lat, coordinates?.lon],
+    queryKey: ["todaySummary"],
     queryFn: () => getTodaySummary(coordinates?.lat, coordinates?.lon)
   });
 };
