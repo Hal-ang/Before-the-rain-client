@@ -8,7 +8,7 @@ const useHourlyWeathersQuery = () => {
   const { coordinates } = useUser();
 
   return useQuery({
-    queryKey: ["hourlyWeathers"],
+    queryKey: ["hourlyWeathers", Boolean(coordinates?.lat && coordinates?.lon)],
     queryFn: () => getHourlyWeathers(coordinates?.lat, coordinates?.lon)
   });
 };
